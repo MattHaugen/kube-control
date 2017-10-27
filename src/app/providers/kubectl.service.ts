@@ -25,4 +25,16 @@ export class KubectlService {
        console.error('ERROR: ', err);
     });
   }
+
+  getPods(): Promise<Array<object>> {
+    return exec('kubectl get pods')
+    .then(function (result) {
+       var stdout = terminalTableParser(result.stdout);
+       var stderr = terminalTableParser(result.stderr);
+       return stdout;
+    })
+    .catch(function (err) {
+       console.error('ERROR: ', err);
+    });
+  }
 }

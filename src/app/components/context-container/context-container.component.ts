@@ -7,7 +7,7 @@ import { KubeContext } from '../../data-structures/kube-context';
   templateUrl: './context-container.component.html'
 })
 export class ContextContainerComponent implements OnInit {
-  kubeContext: KubeContext = { name: '' };
+  kubeContext: KubeContext = { name: '', pods: [] };
 
   constructor(
     private kubectlService: KubectlService,
@@ -15,6 +15,7 @@ export class ContextContainerComponent implements OnInit {
 
   ngOnInit() {
     this.kubectlService.getCurrentContext().then(contextName => { this.kubeContext.name = contextName; });
+    this.kubectlService.getPods().then(podDetails => { this.kubeContext.pods = podDetails; });
   }
 
 }

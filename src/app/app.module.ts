@@ -9,20 +9,23 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContextContainerComponent } from './components/context-container/context-container.component';
+import { PodStatusTableComponent } from './components/pod-status-table/pod-status-table.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { ElectronService } from './providers/electron.service';
 import { KubectlService } from './providers/kubectl.service';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ContextContainerComponent
+    ContextContainerComponent,
+    PodStatusTableComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,6 @@ import {MatCardModule} from '@angular/material';
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule
   ],
   providers: [ElectronService, KubectlService],
   bootstrap: [AppComponent]
