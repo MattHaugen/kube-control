@@ -8,10 +8,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { ContextContainerComponent } from './components/context-container/context-container.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { ElectronService } from './providers/electron.service';
+import { KubectlService } from './providers/kubectl.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material';
@@ -19,7 +21,8 @@ import {MatCardModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ContextContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ import {MatCardModule} from '@angular/material';
     BrowserAnimationsModule,
     MatCardModule
   ],
-  providers: [ElectronService],
+  providers: [ElectronService, KubectlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
