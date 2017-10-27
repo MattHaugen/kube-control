@@ -1,2 +1,9 @@
-Current Context: {{kubeContext.name}}
-<pod-status-table [data]="kubeContext.pods"><pod-status-table>
+<mat-toolbar>{{kubeContext.name}}</mat-toolbar>
+<mat-card>
+  <mat-card-title>
+    Pods
+  </mat-card-title>
+  <mat-card-content>
+    <pod-status-table [data]="kubeContext.pods"></pod-status-table>
+  </mat-card-content>
+</mat-card>

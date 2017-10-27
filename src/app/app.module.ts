@@ -18,7 +18,7 @@ import { KubectlService } from './providers/kubectl.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material';
-import { MatTableModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,8 @@ import { MatTableModule } from '@angular/material';
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule
   ],
   providers: [ElectronService, KubectlService],
   bootstrap: [AppComponent]
