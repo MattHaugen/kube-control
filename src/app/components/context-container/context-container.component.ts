@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { KubectlService } from '../../providers/kubectl.service';
 import { KubeContext } from '../../data-structures/kube-context';
 
@@ -6,7 +6,8 @@ import { KubeContext } from '../../data-structures/kube-context';
   selector: 'context-container',
   templateUrl: './context-container.component.html'
 })
-export class ContextContainerComponent implements OnInit {
+export class ContextContainerComponent implements OnInit, OnChanges {
+  @Input() context: string;
   kubeContext: KubeContext = { name: '', pods: [] };
 
   constructor(
@@ -14,7 +15,10 @@ export class ContextContainerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.kubectlService.getCurrentContext().then(contextName => { this.kubeContext.name = contextName; });
+  }
+
+  ngOnChanges() {
+    this.kubeContext.name = this.context;
     this.kubectlService.getPods().then(podDetails => { this.kubeContext.pods = podDetails; });
   }
 

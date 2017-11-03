@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KubectlService } from '../../providers/kubectl.service';
 
 @Component({
   selector: 'app-home',
@@ -7,15 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-   active:boolean[] = [];
-   tabs:{ header:string }[] = [
-      { header: "1st" },
-   ];
+   tabs:{ context:string }[] = [];
+   activeTab:number = 0;
+   currentContext:string = '';
 
-   constructor() {
-   }
+   constructor(
+     private kubectlService: KubectlService
+   ) {}
 
    ngOnInit() {
+     this.kubectlService.getCurrentContext().then(contextName => {
+       this.tabs.push({ context: contextName });
+       this.currentContext = contextName;
+     });
+   }
+
+   setCurrentContext(contextName) {
+     this.currentContext = contextName;
    }
 
 }
