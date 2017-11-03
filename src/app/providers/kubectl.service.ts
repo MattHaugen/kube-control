@@ -39,13 +39,17 @@ export class KubectlService {
     });
   }
 
-  getContexts(): Promise<Array<object>> {
-    return exec('kubectl config get-contexts')
+  getContexts(specificContext?: string): Promise<Array<object>> {
+    let baseCommand = 'kubectl config get-contexts';
+    let command = specificContext ? baseCommand.concat(' ' + specificContext) : baseCommand;
+    return exec(command)
     .then(function (result) {
        var data = TableParser.parse(result.stdout);
        return data.map(contextDetails => {
          return {
-           NAME: contextDetails.NAME[0]
+           NAME: contextDetails.NAME[0],
+           CLUSTER: contextDetails.CLUSTER[0],
+           NAMESPACE: contextDetails.NAMESPACE[0],
          };
        });
     })
