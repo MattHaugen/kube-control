@@ -1,0 +1,19 @@
+<mat-form-field floatPlaceholder="never">
+  <mat-select placeholder="Select Context" [(ngModel)]="selectedContext">
+    <mat-option *ngFor="let context of contextOptions" [value]="context.NAME">{{ context.NAME }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+   <input matInput type="text" [formControl]="selectContextControl" [matAutocomplete]="auto">
+</mat-form-field>
+
+<mat-autocomplete #auto="matAutocomplete">
+   <mat-option *ngFor="let context of filteredContexts | async" [value]="context.NAME">
+      {{ context.NAME }}
+   </mat-option>
+</mat-autocomplete>
+
+<select [(ngModel)]="selectedContext">
+  <option *ngFor="let context of contextOptions" [value]="context.NAME">{{context.NAME}}</option>
+</select>
