@@ -23,6 +23,8 @@ import { MatToolbarModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material';
 
+import { SuiModule } from 'ng2-semantic-ui';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,8 @@ import { MatAutocompleteModule } from '@angular/material';
     MatToolbarModule,
     MatCardModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    SuiModule
   ],
   providers: [ElectronService, KubectlService],
   bootstrap: [AppComponent]

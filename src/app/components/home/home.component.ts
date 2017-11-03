@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
-  }
+   active:boolean[] = [];
+   tabs:{ header:string }[] = [
+      { header: "1st" },
+   ];
 
-  ngOnInit() {
-  }
+   constructor() {
+   }
+
+   ngOnInit() {
+   }
 
 }
