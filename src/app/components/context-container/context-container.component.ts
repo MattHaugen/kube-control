@@ -8,12 +8,7 @@ import { KubeContext } from '../../data-structures/kube-context';
 })
 export class ContextContainerComponent implements OnInit, OnChanges {
   @Input() context: string;
-  kubeContext: KubeContext = {
-    name: '',
-    cluster: '',
-    namespace: '',
-    pods: []
-  };
+  kubeContext: KubeContext = new KubeContext();
 
   constructor(
     private kubectlService: KubectlService,
@@ -23,13 +18,11 @@ export class ContextContainerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    this.kubeContext = this.kubectlService.linkToContextDataStore(this.context);
     this.kubeContext.name = this.context;
-    this.kubectlService.getContexts(this.context).then((contextDetails: { NAMESPACE:string, CLUSTER:string }[]) => {
-      let specificContextDetails = contextDetails[0];
-      this.kubeContext.namespace = specificContextDetails.NAMESPACE;
-      this.kubeContext.cluster = specificContextDetails.CLUSTER;
-    });
-    this.kubectlService.getPods().then(podDetails => { this.kubeContext.pods = podDetails; });
+    this.kubectlService.refreshContextData(this.context, ['context', 'pods']).then(results => {
+      console.log("Update Complete");
+   });
   }
 
 }
