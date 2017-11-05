@@ -23,8 +23,13 @@ export class HomeComponent implements OnInit {
      });
    }
 
-   setCurrentContext(contextName) {
+   setCurrentContext(contextName, tabIndex) {
      this.currentContext = contextName;
+     this.activeTab = tabIndex;
+   }
+
+   addContext() {
+      this.activeTab = null;
    }
 
 }

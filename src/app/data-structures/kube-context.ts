@@ -3,4 +3,5 @@ export class KubeContext {
   cluster: string = '';
   namespace: string = '';
   pods: Array<object> = [];
+  services: Array<object> = [];
 }
