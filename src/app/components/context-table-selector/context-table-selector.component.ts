@@ -9,6 +9,8 @@ import { KubectlService } from '../../providers/kubectl.service';
 export class ContextTableSelectorComponent implements OnInit {
   @Output() onSelection = new EventEmitter<string>();
   availableContexts: Array<object> = [];
+  filteredContexts: Array<object> = [];
+  filterInput: string = null;
 
   constructor(
     private kubectlService: KubectlService
@@ -16,12 +18,23 @@ export class ContextTableSelectorComponent implements OnInit {
 
   ngOnInit() {
     this.kubectlService.getContexts().then(contextDetails => {
-      this.availableContexts = contextDetails;
+      this.availableContexts = Object.assign([], contextDetails);
+      this.filteredContexts = Object.assign([], contextDetails);
     });
   }
 
   selectContect(contextName: string) {
     this.onSelection.emit(contextName);
+  }
+
+  onFilterInput(inputText: string) {
+    if (inputText) {
+      this.filteredContexts = this.availableContexts.filter((contextDetails: { name:string }) => {
+        return contextDetails.name.includes(inputText);
+      });
+    } else {
+      this.filteredContexts = this.availableContexts;
+    }
   }
 
 }
