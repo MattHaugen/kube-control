@@ -40,4 +40,9 @@ export class HomeComponent implements OnInit {
       this.activeTab = null;
    }
 
+   addTab(contextName: string) {
+     this.tabs.push({ context: contextName});
+     this.activeTab = this.tabs.length - 1;
+   }
+
 }

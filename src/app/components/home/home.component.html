@@ -22,5 +22,24 @@
    </div>
    <div class="ui bottom attached segment">
      <context-container context="{{tab.context}}" *ngFor="let tab of tabs; let i = index" [hidden]="activeTab!==i"></context-container>
+
+     <table class="ui selectable celled table" [hidden]="activeTab!==null">
+       <thead>
+         <tr>
+           <th>Name</th>
+           <th>Cluster</th>
+           <th>Auth Info</th>
+           <th>Namespace</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let availableContext of availableContexts" [ngClass]="{'positive': availableContext.current}" (click)="addTab(availableContext.name)">
+           <td>{{ availableContext.name }}</td>
+           <td>{{ availableContext.cluster }}</td>
+           <td>{{ availableContext.authinfo }}</td>
+           <td>{{ availableContext.namespace }}</td>
+         </tr>
+       </tbody>
+     </table>
    </div>
 </div>
