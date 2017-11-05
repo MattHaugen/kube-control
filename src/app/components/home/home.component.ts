@@ -8,9 +8,10 @@ import { KubectlService } from '../../providers/kubectl.service';
 })
 export class HomeComponent implements OnInit {
 
-   tabs:{ context:string }[] = [];
-   activeTab:number = 0;
-   currentContext:string = '';
+   tabs: { context:string }[] = [];
+   activeTab: number = 0;
+   currentContext: string = '';
+   availableContexts: object[] = [];
 
    constructor(
      private kubectlService: KubectlService
@@ -21,11 +22,18 @@ export class HomeComponent implements OnInit {
        this.tabs.push({ context: contextName });
        this.currentContext = contextName;
      });
+     this.kubectlService.getContexts().then(allContexts => {
+       this.availableContexts = allContexts;
+     });
    }
 
-   setCurrentContext(contextName, tabIndex) {
+   setCurrentContext(contextName: string, tabIndex: number) {
      this.currentContext = contextName;
      this.activeTab = tabIndex;
+   }
+
+   setTabContext(contextName: string, tabIndex: number) {
+     this.tabs[tabIndex].context = contextName;
    }
 
    addContext() {

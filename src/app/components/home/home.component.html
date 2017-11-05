@@ -7,12 +7,18 @@
    </div>
 
    <div class="ui top attached tabular menu">
-     <a class="item" [ngClass]="{'active': activeTab===i}" *ngFor="let tab of tabs; let i = index" (click)="setCurrentContext(tab.context, i)">
+     <div class="item" [ngClass]="{'active': activeTab===i}" *ngFor="let tab of tabs; let i = index" (click)="setCurrentContext(tab.context, i)">
        {{ tab.context }}
-     </a>
-     <a class="item" [ngClass]="{'active': activeTab===null}" (click)="addContext()">
+       <div class="ui dropdown" suiDropdown>
+         <i class="dropdown icon"></i>
+         <div class="menu" suiDropdownMenu>
+           <div class="item" *ngFor="let availableContext of availableContexts" (click)="setTabContext(availableContext.name, i)">{{ availableContext.name }}</div>
+         </div>
+       </div>
+     </div>
+     <div class="item" [ngClass]="{'active': activeTab===null}" (click)="addContext()">
         +
-     </a>
+     </div>
    </div>
    <div class="ui bottom attached segment">
      <context-container context="{{tab.context}}" *ngFor="let tab of tabs; let i = index" [hidden]="activeTab!==i"></context-container>
