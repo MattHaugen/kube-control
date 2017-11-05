@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContextContainerComponent } from './components/context-container/context-container.component';
 import { PodStatusTableComponent } from './components/pod-status-table/pod-status-table.component';
-import { ContextSelectorComponent } from './components/context-selector/context-selector.component';
+import { ContextTableSelectorComponent } from './components/context-table-selector/context-table-selector.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -31,7 +31,7 @@ import { SuiModule } from 'ng2-semantic-ui';
     HomeComponent,
     ContextContainerComponent,
     PodStatusTableComponent,
-    ContextSelectorComponent
+    ContextTableSelectorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<table class="ui selectable celled table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Cluster</th>
+      <th>Auth Info</th>
+      <th>Namespace</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let availableContext of availableContexts" [ngClass]="{'positive': availableContext.current}" (click)="selectContect(availableContext.name)">
+      <td>{{ availableContext.name }}</td>
+      <td>{{ availableContext.cluster }}</td>
+      <td>{{ availableContext.authinfo }}</td>
+      <td>{{ availableContext.namespace }}</td>
+    </tr>
+  </tbody>
+</table>
