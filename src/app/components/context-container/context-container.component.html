@@ -1,15 +1,20 @@
-<h2 class="ui header">
-  <i class="cube icon"></i>
-  <div class="content">
-    {{ kubeContext.name }}
-    <div class="sub header">{{ kubeContext.namespace }} ({{ kubeContext.cluster }})</div>
+<div class="ui grid">
+  <div class="twelve wide column">
+    <h2 class="ui header">
+      <i class="cube icon"></i>
+      <div class="content">
+        {{ kubeContext.name }}
+        <div class="sub header">{{ kubeContext.namespace }} ({{ kubeContext.cluster }})</div>
+      </div>
+    </h2>
   </div>
-</h2>
-<mat-card>
-  <mat-card-title>
-    Pods
-  </mat-card-title>
-  <mat-card-content>
-    <pod-status-table [data]="kubeContext.pods"></pod-status-table>
-  </mat-card-content>
-</mat-card>
+  <div class="four wide column">
+    <div class="ui text menu">
+      <div class="header item">Last Updated</div>
+      <a class="item" (click)="refreshData()">
+        <i class="refresh icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<pod-status-table [context]="context" [subjectListener]="refresherSubject"></pod-status-table>

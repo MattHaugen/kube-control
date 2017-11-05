@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { KubectlService } from '../../providers/kubectl.service';
 import { KubeContext } from '../../data-structures/kube-context';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'context-container',
@@ -9,6 +10,7 @@ import { KubeContext } from '../../data-structures/kube-context';
 export class ContextContainerComponent implements OnInit, OnChanges {
   @Input() context: string;
   kubeContext: KubeContext = new KubeContext();
+  refresherSubject:Subject<any> = new Subject();
 
   constructor(
     private kubectlService: KubectlService,
@@ -23,8 +25,10 @@ export class ContextContainerComponent implements OnInit, OnChanges {
        this.kubeContext.namespace = specificContextDetails.namespace;
        this.kubeContext.cluster = specificContextDetails.cluster;
     });
-    this.kubectlService.getResource(this.context, 'pods').then(podDetails => { this.kubeContext.pods = podDetails });
-    this.kubectlService.getResource(this.context, 'services').then(serviceDetails => { this.kubeContext.services = serviceDetails });
+  }
+
+  refreshData() {
+    this.refresherSubject.next(new Date());
   }
 
 }

@@ -1,18 +1,28 @@
-<table class="ui celled table">
-  <thead>
-  <tr>
-     <th *ngFor="let headerLabel of headerLabels">
-       {{headerLabel}}
-     </th>
-  </tr>
- </thead>
- <tbody>
-  <tr *ngFor="let pod of data">
-     <td>{{pod.NAME}}</td>
-     <td>{{pod.READY}}</td>
-     <td>{{pod.STATUS}}</td>
-     <td>{{pod.RESTARTS}}</td>
-     <td>{{pod.AGE}}</td>
-  </tr>
- </tbody>
-</table>
+<mat-card>
+  <div class="ui active inverted dimmer" *ngIf="loading">
+    <div class="ui text loader">Loading</div>
+  </div>
+  <mat-card-title>
+    Pods
+  </mat-card-title>
+  <mat-card-content>
+    <table class="ui celled table">
+      <thead>
+      <tr>
+         <th *ngFor="let headerLabel of headerLabels">
+           {{headerLabel}}
+         </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr *ngFor="let pod of data">
+         <td>{{pod.NAME}}</td>
+         <td>{{pod.READY}}</td>
+         <td>{{pod.STATUS}}</td>
+         <td>{{pod.RESTARTS}}</td>
+         <td>{{pod.AGE}}</td>
+      </tr>
+     </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
