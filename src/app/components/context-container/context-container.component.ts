@@ -9,6 +9,7 @@ import { Subject } from 'rxjs/Subject';
 })
 export class ContextContainerComponent implements OnInit, OnChanges {
   @Input() context: string;
+  lastUpdated: Date = new Date();
   kubeContext: KubeContext = new KubeContext();
   refresherSubject:Subject<any> = new Subject();
 
@@ -28,7 +29,8 @@ export class ContextContainerComponent implements OnInit, OnChanges {
   }
 
   refreshData() {
-    this.refresherSubject.next(new Date());
+    this.lastUpdated = new Date();
+    this.refresherSubject.next(this.lastUpdated);
   }
 
 }

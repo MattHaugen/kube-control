@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { KubectlService } from '../../providers/kubectl.service';
 import { Subject } from 'rxjs/Subject';
 
@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/Subject';
 })
 export class PodStatusTableComponent implements OnInit {
   @Input() context: string;
-  @Input() subjectListener:Subject<any>;
+  @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Ready', 'Status', 'Restarts', 'Age'];
   loading: boolean = true;
@@ -19,9 +19,13 @@ export class PodStatusTableComponent implements OnInit {
 
   ngOnInit() {
     this.refreshData();
-    this.subjectListener.subscribe(event => {
+    this.refreshListener.subscribe(event => {
       this.refreshData();
     });
+  }
+
+  ngOnDestroy() {
+    this.refreshListener.unsubscribe();
   }
 
   refreshData() {
