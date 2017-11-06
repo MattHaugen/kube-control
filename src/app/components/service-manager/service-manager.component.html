@@ -1,0 +1,28 @@
+<mat-card>
+  <div class="ui active inverted dimmer" *ngIf="loading">
+    <div class="ui text loader">Loading</div>
+  </div>
+  <mat-card-title>
+    Services
+  </mat-card-title>
+  <mat-card-content>
+    <table class="ui celled table">
+      <thead>
+      <tr>
+         <th *ngFor="let headerLabel of headerLabels">
+           {{headerLabel}}
+         </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr *ngFor="let service of data">
+         <td>{{service.NAME}}</td>
+         <td>{{service['CLUSTER-IP']}}</td>
+         <td>{{service['EXTERNAL-IP']}}</td>
+         <td>{{service['PORT(S)']}}</td>
+         <td>{{service.AGE}}</td>
+      </tr>
+     </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
