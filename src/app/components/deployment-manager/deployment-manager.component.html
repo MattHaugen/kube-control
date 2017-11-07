@@ -1,0 +1,29 @@
+<mat-card>
+  <div class="ui active inverted dimmer" *ngIf="loading">
+    <div class="ui text loader">Loading</div>
+  </div>
+  <mat-card-title>
+    Deployments
+  </mat-card-title>
+  <mat-card-content>
+    <table class="ui celled table">
+      <thead>
+      <tr>
+         <th *ngFor="let headerLabel of headerLabels">
+           {{headerLabel}}
+         </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr *ngFor="let deployment of data">
+         <td>{{deployment.NAME}}</td>
+         <td>{{deployment.DESIRED}}</td>
+         <td>{{deployment.CURRENT}}</td>
+         <td>{{deployment['UP-TO-DATE']}}</td>
+         <td>{{deployment.AVAILABLE}}</td>
+         <td>{{deployment.AGE}}</td>
+      </tr>
+     </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
