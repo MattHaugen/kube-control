@@ -1,0 +1,28 @@
+<mat-card>
+  <div class="ui active inverted dimmer" *ngIf="loading">
+    <div class="ui text loader">Loading</div>
+  </div>
+  <mat-card-title>
+    Replica Sets
+  </mat-card-title>
+  <mat-card-content>
+    <table class="ui celled table">
+      <thead>
+      <tr>
+         <th *ngFor="let headerLabel of headerLabels">
+           {{headerLabel}}
+         </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr *ngFor="let replicaset of data">
+         <td>{{replicaset.NAME}}</td>
+         <td>{{replicaset.DESIRED}}</td>
+         <td>{{replicaset.CURRENT}}</td>
+         <td>{{replicaset.READY}}</td>
+         <td>{{replicaset.AGE}}</td>
+      </tr>
+     </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>

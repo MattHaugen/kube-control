@@ -12,6 +12,8 @@ import { ContextContainerComponent } from './components/context-container/contex
 import { PodStatusTableComponent } from './components/pod-status-table/pod-status-table.component';
 import { ServiceManagerComponent } from './components/service-manager/service-manager.component';
 import { DeploymentManagerComponent } from './components/deployment-manager/deployment-manager.component';
+import { ReplicasetManagerComponent } from './components/replicaset-manager/replicaset-manager.component';
+import { IngressManagerComponent } from './components/ingress-manager/ingress-manager.component';
 import { ContextTableSelectorComponent } from './components/context-table-selector/context-table-selector.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +37,8 @@ import { SuiModule } from 'ng2-semantic-ui';
     PodStatusTableComponent,
     ServiceManagerComponent,
     DeploymentManagerComponent,
+    ReplicasetManagerComponent,
+    IngressManagerComponent,
     ContextTableSelectorComponent
   ],
   imports: [

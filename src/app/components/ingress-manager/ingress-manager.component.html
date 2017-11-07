@@ -1,0 +1,28 @@
+<mat-card>
+  <div class="ui active inverted dimmer" *ngIf="loading">
+    <div class="ui text loader">Loading</div>
+  </div>
+  <mat-card-title>
+    Ingress
+  </mat-card-title>
+  <mat-card-content>
+    <table class="ui celled table">
+      <thead>
+      <tr>
+         <th *ngFor="let headerLabel of headerLabels">
+           {{headerLabel}}
+         </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr *ngFor="let ingress of data">
+         <td>{{ingress.NAME}}</td>
+         <td>{{ingress.HOSTS}}</td>
+         <td>{{ingress.ADDRESS}}</td>
+         <td>{{ingress.PORTS}}</td>
+         <td>{{ingress.AGE}}</td>
+      </tr>
+     </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
