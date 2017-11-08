@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { KubectlService } from '../../providers/kubectl.service';
 import { Subject } from 'rxjs/Subject';
+import { SuiModalService } from 'ng2-semantic-ui';
+import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-modal.component';
 
 @Component({
   selector: 'pod-status-table',
@@ -15,6 +17,7 @@ export class PodStatusTableComponent implements OnInit {
 
   constructor(
     private kubectlService: KubectlService,
+    private modalService: SuiModalService
   ) {}
 
   ngOnInit() {
@@ -33,6 +36,13 @@ export class PodStatusTableComponent implements OnInit {
     this.kubectlService.getResource(this.context, 'pods').then(podDetails => {
       this.data = podDetails;
       this.loading = false;
+    });
+  }
+
+  showLogs(podName: string): void {
+    this.kubectlService.getLogs('po/' + podName).then(logs => {
+      this.modalService
+      .open(new TerminalOutputModal(logs, podName));
     });
   }
 }

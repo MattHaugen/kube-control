@@ -15,6 +15,7 @@ import { DeploymentManagerComponent } from './components/deployment-manager/depl
 import { ReplicasetManagerComponent } from './components/replicaset-manager/replicaset-manager.component';
 import { IngressManagerComponent } from './components/ingress-manager/ingress-manager.component';
 import { ContextTableSelectorComponent } from './components/context-table-selector/context-table-selector.component';
+import { TerminalOutputModalComponent } from "./components/terminal-output-modal/terminal-output-modal.component";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -39,7 +40,8 @@ import { SuiModule } from 'ng2-semantic-ui';
     DeploymentManagerComponent,
     ReplicasetManagerComponent,
     IngressManagerComponent,
-    ContextTableSelectorComponent
+    ContextTableSelectorComponent,
+    TerminalOutputModalComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,9 @@ import { SuiModule } from 'ng2-semantic-ui';
     SuiModule
   ],
   providers: [ElectronService, KubectlService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    TerminalOutputModalComponent
+  ]
 })
 export class AppModule { }

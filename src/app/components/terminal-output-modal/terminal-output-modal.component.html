@@ -1,0 +1,8 @@
+<div class="header" *ngIf="modal.context.title">{{ modal.context.title }}</div>
+<div class="content scrolling content">
+    <pre>{{ modal.context.message }}</pre>
+</div>
+<div class="actions">
+    Displaying last 40 lines
+    <button class="ui teal button" (click)="modal.approve(undefined)" autofocus>Close</button>
+</div>

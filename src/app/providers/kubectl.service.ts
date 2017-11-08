@@ -75,4 +75,15 @@ export class KubectlService {
          console.error('ERROR: ', err);
       });
    }
+
+   getLogs(resource: string): Promise<string> {
+     let command = `kubectl logs ${resource} --tail=40`;
+     return exec(command)
+     .then(function (result) {
+        return result.stdout;
+     })
+     .catch(function (err) {
+        console.error('ERROR: ', err);
+     });
+   }
 }
