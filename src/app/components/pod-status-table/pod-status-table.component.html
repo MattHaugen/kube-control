@@ -21,6 +21,15 @@
          <td>{{pod.STATUS}}</td>
          <td>{{pod.RESTARTS}}</td>
          <td>{{pod.AGE}}</td>
+         <td>
+           <div class="ui dropdown" suiDropdown>
+             <i class="ellipsis vertical icon"></i>
+             <div class="menu" suiDropdownMenu>
+               <div class="item">Describe</div>
+               <div class="item">Logs</div>
+             </div>
+           </div>
+         </td>
       </tr>
      </tbody>
     </table>

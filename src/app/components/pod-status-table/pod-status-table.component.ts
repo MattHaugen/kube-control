@@ -10,7 +10,7 @@ export class PodStatusTableComponent implements OnInit {
   @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
-  headerLabels = ['Name', 'Ready', 'Status', 'Restarts', 'Age'];
+  headerLabels = ['Name', 'Ready', 'Status', 'Restarts', 'Age', ''];
   loading: boolean = true;
 
   constructor(

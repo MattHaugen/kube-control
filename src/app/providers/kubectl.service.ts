@@ -33,13 +33,23 @@ export class KubectlService {
       });
    }
 
+   cleanseTerminalOutput(terminalOutput: object[]): object[] {
+     return terminalOutput.map(row => {
+       let cleansedObject = {};
+       for (const key in row) {
+         cleansedObject[key] = row[key][0]
+       }
+       return cleansedObject;
+     });
+   }
+
    getResource(contextName: string, resourceLabel: string): Promise<Array<object>> {
+      var classScope = this;
       return this.setCurrentContext(contextName).then(result => {
          return exec('kubectl get ' + resourceLabel)
          .then(function (result) {
-            var stdout = terminalTableParser(result.stdout);
-            var stderr = terminalTableParser(result.stderr);
-            return stdout;
+            var stdout = TableParser.parse(result.stdout);
+            return classScope.cleanseTerminalOutput(stdout);
          })
          .catch(function (err) {
             console.error('ERROR: ', err);
