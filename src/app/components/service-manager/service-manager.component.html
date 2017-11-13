@@ -21,6 +21,14 @@
          <td>{{service['EXTERNAL-IP']}}</td>
          <td>{{service['PORT(S)']}}</td>
          <td>{{service.AGE}}</td>
+         <td>
+           <div class="ui dropdown" suiDropdown>
+             <i class="ellipsis vertical icon"></i>
+             <div class="menu" suiDropdownMenu>
+               <div class="item" (click)="showDescribe(service.NAME)">Describe</div>
+             </div>
+           </div>
+         </td>
       </tr>
      </tbody>
     </table>
