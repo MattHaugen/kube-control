@@ -42,6 +42,13 @@ export class PodStatusTableComponent implements OnInit {
   showLogs(podName: string): void {
     this.kubectlService.getLogs('po/' + podName).then(logs => {
       this.modalService
+      .open(new TerminalOutputModal(logs, podName, "Displaying last 40 lines"));
+    });
+  }
+
+  showDescribe(podName: string): void {
+    this.kubectlService.getDescribe('po/' + podName).then(logs => {
+      this.modalService
       .open(new TerminalOutputModal(logs, podName));
     });
   }

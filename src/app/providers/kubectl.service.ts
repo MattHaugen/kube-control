@@ -86,4 +86,15 @@ export class KubectlService {
         console.error('ERROR: ', err);
      });
    }
+
+   getDescribe(resource: string): Promise<string> {
+     let command = `kubectl describe ${resource}`;
+     return exec(command)
+     .then(function (result) {
+        return result.stdout;
+     })
+     .catch(function (err) {
+        console.error('ERROR: ', err);
+     });
+   }
 }

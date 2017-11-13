@@ -4,6 +4,7 @@ import { SuiModal, ComponentModalConfig, ModalSize } from "ng2-semantic-ui";
 interface ITerminalOutputModalContext {
     message:string;
     title?:string;
+    description?:string;
 }
 
 @Component({
@@ -15,8 +16,8 @@ export class TerminalOutputModalComponent {
 }
 
 export class TerminalOutputModal extends ComponentModalConfig<ITerminalOutputModalContext, void, void> {
-    constructor(message:string, title?:string) {
-        super(TerminalOutputModalComponent, { message, title });
+    constructor(message:string, title?:string, description?:string) {
+        super(TerminalOutputModalComponent, { message, title, description });
 
         this.transitionDuration = 200;
         this.size = ModalSize.Large;

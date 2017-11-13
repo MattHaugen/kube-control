@@ -25,7 +25,7 @@
            <div class="ui dropdown" suiDropdown>
              <i class="ellipsis vertical icon"></i>
              <div class="menu" suiDropdownMenu>
-               <div class="item">Describe</div>
+               <div class="item" (click)="showDescribe(pod.NAME)">Describe</div>
                <div class="item" (click)="showLogs(pod.NAME)">Logs</div>
              </div>
            </div>
