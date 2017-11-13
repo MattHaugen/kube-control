@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { KubectlService } from '../../providers/kubectl.service';
 import { Subject } from 'rxjs/Subject';
+import { SuiModalService } from 'ng2-semantic-ui';
+import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-modal.component';
 
 @Component({
   selector: 'deployment-manager',
@@ -10,11 +12,12 @@ export class DeploymentManagerComponent implements OnInit {
   @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
-  headerLabels = ['Name', 'Desired', 'Current', 'Up-To-Date', 'Available', 'Age'];
+  headerLabels = ['Name', 'Desired', 'Current', 'Up-To-Date', 'Available', 'Age', ''];
   loading: boolean = true;
 
   constructor(
     private kubectlService: KubectlService,
+    private modalService: SuiModalService
   ) {}
 
   ngOnInit() {
@@ -33,6 +36,13 @@ export class DeploymentManagerComponent implements OnInit {
     this.kubectlService.getResource(this.context, 'deployments').then(resourceDetails => {
       this.data = resourceDetails;
       this.loading = false;
+    });
+  }
+
+  showDescribe(deploymentName: string): void {
+    this.kubectlService.getDescribe('deploy/' + deploymentName).then(logs => {
+      this.modalService
+      .open(new TerminalOutputModal(logs, deploymentName));
     });
   }
 }

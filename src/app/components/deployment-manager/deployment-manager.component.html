@@ -22,6 +22,14 @@
          <td>{{deployment['UP-TO-DATE']}}</td>
          <td>{{deployment.AVAILABLE}}</td>
          <td>{{deployment.AGE}}</td>
+         <td>
+           <div class="ui dropdown" suiDropdown>
+             <i class="ellipsis vertical icon"></i>
+             <div class="menu" suiDropdownMenu>
+               <div class="item" (click)="showDescribe(deployment.NAME)">Describe</div>
+             </div>
+           </div>
+         </td>
       </tr>
      </tbody>
     </table>
