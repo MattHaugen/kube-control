@@ -21,6 +21,14 @@
          <td>{{replicaset.CURRENT}}</td>
          <td>{{replicaset.READY}}</td>
          <td>{{replicaset.AGE}}</td>
+         <td>
+           <div class="ui dropdown" suiDropdown>
+             <i class="ellipsis vertical icon"></i>
+             <div class="menu" suiDropdownMenu>
+               <div class="item" (click)="showDescribe(replicaset.NAME)">Describe</div>
+             </div>
+           </div>
+         </td>
       </tr>
      </tbody>
     </table>
