@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { KubectlService } from '../../providers/kubectl.service';
 import { Subject } from 'rxjs/Subject';
+import { SuiModalService } from 'ng2-semantic-ui';
+import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-modal.component';
 
 @Component({
   selector: 'ingress-manager',
@@ -10,11 +12,12 @@ export class IngressManagerComponent implements OnInit {
   @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
-  headerLabels = ['Name', 'Hosts', 'Address', 'Ports', 'Age'];
+  headerLabels = ['Name', 'Hosts', 'Address', 'Ports', 'Age', ''];
   loading: boolean = true;
 
   constructor(
     private kubectlService: KubectlService,
+    private modalService: SuiModalService
   ) {}
 
   ngOnInit() {
@@ -33,6 +36,13 @@ export class IngressManagerComponent implements OnInit {
     this.kubectlService.getResource(this.context, 'ingress').then(resourceDetails => {
       this.data = resourceDetails;
       this.loading = false;
+    });
+  }
+
+  showDescribe(ingressName: string): void {
+    this.kubectlService.getDescribe('ing/' + ingressName).then(logs => {
+      this.modalService
+      .open(new TerminalOutputModal(logs, ingressName));
     });
   }
 }
