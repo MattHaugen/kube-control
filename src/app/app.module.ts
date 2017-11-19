@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { InitializeComponent } from './components/initialize/initialize.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContextContainerComponent } from './components/context-container/context-container.component';
 import { PodStatusTableComponent } from './components/pod-status-table/pod-status-table.component';
@@ -34,6 +35,7 @@ import { SuiModule } from 'ng2-semantic-ui';
   declarations: [
     AppComponent,
     HomeComponent,
+    InitializeComponent,
     ContextContainerComponent,
     PodStatusTableComponent,
     ServiceManagerComponent,

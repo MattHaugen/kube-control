@@ -1,0 +1,15 @@
+<div class="initialize-container">
+  <div class="ui two column centered aligned grid">
+    <div class="column">
+      <sui-progress [value]="readinessPercent" [showProgress]="progress" [maximum]="100" [precision]="0" class="teal">
+        Powering Up
+      </sui-progress>
+
+      <div class="error-list">
+        <p *ngFor="let error of errors">
+          {{ error }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

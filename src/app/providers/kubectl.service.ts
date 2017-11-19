@@ -8,6 +8,16 @@ import { KubeContext } from '../data-structures/kube-context';
 export class KubectlService {
    currentContext: string = '';
 
+   getVersion(): Promise<string> {
+     return exec('kubectl version --short=true')
+     .then(function (result) {
+        return result.stdout.trim();
+     })
+     .catch(function (err) {
+        console.error('ERROR: ', err);
+     });
+   }
+
    getCurrentContext(): Promise<string> {
       return exec('kubectl config current-context')
       .then(function (result) {
