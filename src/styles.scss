@@ -7,3 +7,19 @@ html, body {
 }
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
+.ui.secondary.menu .item {
+  font-size: 1.2rem;
+
+  &.logo {
+    font-family: 'Poiret One', cursive;
+
+    background-color: teal;
+    color: white;
+
+    a {
+      color: white;
+    }
+  }
+}
