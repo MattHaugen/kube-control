@@ -9,12 +9,16 @@ import { Router } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
+  rawConfig: string = '';
+
   constructor(
     private kubectlService: KubectlService,
     private router: Router
   ) {}
 
   ngOnInit() {
-
+    this.kubectlService.getRawConfig().then(rawConfig => {
+      this.rawConfig = rawConfig;
+    })
   }
 }

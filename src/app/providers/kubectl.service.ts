@@ -18,6 +18,16 @@ export class KubectlService {
      });
    }
 
+   getRawConfig(): Promise<string> {
+     return exec('kubectl config view')
+     .then(function (result) {
+        return result.stdout.trim();
+     })
+     .catch(function (err) {
+        console.error('ERROR: ', err);
+     });
+   }
+
    getCurrentContext(): Promise<string> {
       return exec('kubectl config current-context')
       .then(function (result) {
