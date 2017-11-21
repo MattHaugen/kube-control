@@ -19,12 +19,12 @@
     </div>
   </div>
 
-  <div class="eight wide column">
+  <div class="sixteen wide tablet eight wide computer column">
     <pod-status-table [context]="context" [refreshListener]="refresherSubject"></pod-status-table>
     <deployment-manager [context]="context" [refreshListener]="refresherSubject"></deployment-manager>
     <replicaset-manager [context]="context" [refreshListener]="refresherSubject"></replicaset-manager>
   </div>
-  <div class="eight wide column">
+  <div class="sixteen wide tablet eight wide computer column">
     <service-manager [context]="context" [refreshListener]="refresherSubject"></service-manager>
     <ingress-manager [context]="context" [refreshListener]="refresherSubject"></ingress-manager>
   </div>
