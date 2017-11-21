@@ -5,7 +5,8 @@ import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'context-container',
-  templateUrl: './context-container.component.html'
+  templateUrl: './context-container.component.html',
+  styleUrls: ['./context-container.component.scss']
 })
 export class ContextContainerComponent implements OnInit, OnChanges {
   @Input() context: string;

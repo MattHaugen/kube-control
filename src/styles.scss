@@ -23,3 +23,15 @@ html, body {
     }
   }
 }
+
+$header-color: #087197;
+
+.ui.card>.content {
+  &.kb-header {
+    background-color: $header-color;
+  }
+
+  .header {
+    color: #FFF;
+  }
+}

@@ -1,11 +1,11 @@
-<mat-card>
+<div class="ui fluid card">
   <div class="ui active inverted dimmer" *ngIf="loading">
     <div class="ui text loader">Loading</div>
   </div>
-  <mat-card-title>
-    Deployments
-  </mat-card-title>
-  <mat-card-content>
+  <div class="content kb-header">
+    <div class="header">Deployments</div>
+  </div>
+  <div class="content">
     <table class="ui celled table">
       <thead>
       <tr>
@@ -33,5 +33,5 @@
       </tr>
      </tbody>
     </table>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>
