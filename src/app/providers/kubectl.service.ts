@@ -9,7 +9,7 @@ export class KubectlService {
    currentContext: string = '';
 
    getVersion(): Promise<string> {
-     return exec('kubectl version --short=true')
+     return exec('kubectl version --short=true --client=true')
      .then(function (result) {
         return result.stdout.trim();
      })
