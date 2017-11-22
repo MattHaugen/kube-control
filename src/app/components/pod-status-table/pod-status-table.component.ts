@@ -14,6 +14,8 @@ export class PodStatusTableComponent implements OnInit {
   data: Array<object> = [];
   headerLabels = ['Name', 'Ready', 'Status', 'Restarts', 'Age', ''];
   loading: boolean = true;
+  notification: string = null;
+  notificationClass: string = 'negative';
 
   constructor(
     private kubectlService: KubectlService,
@@ -33,8 +35,15 @@ export class PodStatusTableComponent implements OnInit {
 
   refreshData() {
     this.loading = true;
-    this.kubectlService.getResource(this.context, 'pods').then(podDetails => {
+    this.kubectlService.getResource(this.context, 'pods')
+    .then(podDetails => {
       this.data = podDetails;
+      this.loading = false;
+    })
+    .catch(err => {
+      this.data = [];
+      this.notification = err;
+      this.notificationClass = 'negative';
       this.loading = false;
     });
   }
@@ -51,5 +60,9 @@ export class PodStatusTableComponent implements OnInit {
       this.modalService
       .open(new TerminalOutputModal(logs, podName));
     });
+  }
+
+  closeNotification(): void {
+    this.notification = null;
   }
 }

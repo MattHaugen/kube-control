@@ -72,7 +72,7 @@ export class KubectlService {
             return classScope.cleanseTerminalOutput(stdout);
          })
          .catch(function (err) {
-            console.error('ERROR: ', err);
+            return Promise.reject(err);
          });
       });
    }
