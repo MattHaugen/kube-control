@@ -35,6 +35,7 @@ export class IngressManagerComponent implements OnInit {
 
   refreshData() {
     this.loading = true;
+    this.notification = null;
     this.kubectlService.getResource(this.context, 'ingress')
     .then(resourceDetails => {
       this.data = resourceDetails;

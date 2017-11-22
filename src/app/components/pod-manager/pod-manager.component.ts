@@ -35,6 +35,7 @@ export class PodManagerComponent implements OnInit {
 
   refreshData() {
     this.loading = true;
+    this.notification = null;
     this.kubectlService.getResource(this.context, 'pods')
     .then(podDetails => {
       this.data = podDetails;

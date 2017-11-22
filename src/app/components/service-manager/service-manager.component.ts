@@ -35,6 +35,7 @@ export class ServiceManagerComponent implements OnInit {
 
   refreshData() {
     this.loading = true;
+    this.notification = null;
     this.kubectlService.getResource(this.context, 'services')
     .then(resourceDetails => {
       this.data = resourceDetails;
