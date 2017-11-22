@@ -14,6 +14,8 @@ export class ServiceManagerComponent implements OnInit {
   data: Array<object> = [];
   headerLabels = ['Name', 'Cluster-IP', 'External-IP', 'Port(s)', 'Age', ''];
   loading: boolean = true;
+  notification: string = null;
+  notificationClass: string = 'negative';
 
   constructor(
     private kubectlService: KubectlService,
@@ -33,8 +35,15 @@ export class ServiceManagerComponent implements OnInit {
 
   refreshData() {
     this.loading = true;
-    this.kubectlService.getResource(this.context, 'services').then(resourceDetails => {
+    this.kubectlService.getResource(this.context, 'services')
+    .then(resourceDetails => {
       this.data = resourceDetails;
+      this.loading = false;
+    })
+    .catch(err => {
+      this.data = [];
+      this.notification = err;
+      this.notificationClass = 'negative';
       this.loading = false;
     });
   }
@@ -44,5 +53,9 @@ export class ServiceManagerComponent implements OnInit {
       this.modalService
       .open(new TerminalOutputModal(logs, serviceName));
     });
+  }
+
+  closeNotification(): void {
+    this.notification = null;
   }
 }

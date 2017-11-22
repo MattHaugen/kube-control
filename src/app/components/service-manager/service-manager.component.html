@@ -6,6 +6,10 @@
     <div class="header">Services</div>
   </div>
   <div class="content">
+    <div class="ui message" *ngIf="notification" [ngClass]="notificationClass">
+      <i class="close icon" (click)="closeNotification()"></i>
+      <p>{{ notification }}</p>
+    </div>
     <table class="ui celled table">
       <thead>
       <tr>

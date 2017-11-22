@@ -14,6 +14,8 @@ export class ReplicasetManagerComponent implements OnInit {
   data: Array<object> = [];
   headerLabels = ['Name', 'Desired', 'Current', 'Ready', 'Age', ''];
   loading: boolean = true;
+  notification: string = null;
+  notificationClass: string = 'negative';
 
   constructor(
     private kubectlService: KubectlService,
@@ -33,8 +35,15 @@ export class ReplicasetManagerComponent implements OnInit {
 
   refreshData() {
     this.loading = true;
-    this.kubectlService.getResource(this.context, 'replicasets').then(resourceDetails => {
+    this.kubectlService.getResource(this.context, 'replicasets')
+    .then(resourceDetails => {
       this.data = resourceDetails;
+      this.loading = false;
+    })
+    .catch(err => {
+      this.data = [];
+      this.notification = err;
+      this.notificationClass = 'negative';
       this.loading = false;
     });
   }
@@ -44,5 +53,9 @@ export class ReplicasetManagerComponent implements OnInit {
       this.modalService
       .open(new TerminalOutputModal(logs, replicasetName));
     });
+  }
+
+  closeNotification(): void {
+    this.notification = null;
   }
 }

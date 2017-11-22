@@ -14,6 +14,8 @@ export class DeploymentManagerComponent implements OnInit {
   data: Array<object> = [];
   headerLabels = ['Name', 'Desired', 'Current', 'Up-To-Date', 'Available', 'Age', ''];
   loading: boolean = true;
+  notification: string = null;
+  notificationClass: string = 'negative';
 
   constructor(
     private kubectlService: KubectlService,
@@ -33,8 +35,15 @@ export class DeploymentManagerComponent implements OnInit {
 
   refreshData() {
     this.loading = true;
-    this.kubectlService.getResource(this.context, 'deployments').then(resourceDetails => {
+    this.kubectlService.getResource(this.context, 'deployments')
+    .then(resourceDetails => {
       this.data = resourceDetails;
+      this.loading = false;
+    })
+    .catch(err => {
+      this.data = [];
+      this.notification = err;
+      this.notificationClass = 'negative';
       this.loading = false;
     });
   }
@@ -44,5 +53,9 @@ export class DeploymentManagerComponent implements OnInit {
       this.modalService
       .open(new TerminalOutputModal(logs, deploymentName));
     });
+  }
+
+  closeNotification(): void {
+    this.notification = null;
   }
 }
