@@ -20,7 +20,7 @@
   </div>
 
   <div class="sixteen wide tablet eight wide computer column">
-    <pod-status-table [context]="context" [refreshListener]="refresherSubject"></pod-status-table>
+    <pod-manager [context]="context" [refreshListener]="refresherSubject"></pod-manager>
     <deployment-manager [context]="context" [refreshListener]="refresherSubject"></deployment-manager>
     <replicaset-manager [context]="context" [refreshListener]="refresherSubject"></replicaset-manager>
   </div>

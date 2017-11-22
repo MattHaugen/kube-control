@@ -5,10 +5,10 @@ import { SuiModalService } from 'ng2-semantic-ui';
 import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-modal.component';
 
 @Component({
-  selector: 'pod-status-table',
-  templateUrl: './pod-status-table.component.html'
+  selector: 'pod-manager',
+  templateUrl: './pod-manager.component.html'
 })
-export class PodStatusTableComponent implements OnInit {
+export class PodManagerComponent implements OnInit {
   @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];

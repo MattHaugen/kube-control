@@ -12,7 +12,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { ContextContainerComponent } from './components/context-container/context-container.component';
-import { PodStatusTableComponent } from './components/pod-status-table/pod-status-table.component';
+import { PodManagerComponent } from './components/pod-manager/pod-manager.component';
 import { ServiceManagerComponent } from './components/service-manager/service-manager.component';
 import { DeploymentManagerComponent } from './components/deployment-manager/deployment-manager.component';
 import { ReplicasetManagerComponent } from './components/replicaset-manager/replicaset-manager.component';
@@ -34,7 +34,7 @@ import { SuiModule } from 'ng2-semantic-ui';
     SettingsComponent,
     InitializeComponent,
     ContextContainerComponent,
-    PodStatusTableComponent,
+    PodManagerComponent,
     ServiceManagerComponent,
     DeploymentManagerComponent,
     ReplicasetManagerComponent,
