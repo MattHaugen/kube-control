@@ -32,7 +32,6 @@ export class InitializeComponent implements OnInit {
 
   verifyKubectl(): Promise<boolean> {
     return this.kubectlService.getVersion().then(result => {
-      console.log(result);
       if (!result.includes('Client Version')) {
         this.errors.push('Kubectl not found')
         return false;
