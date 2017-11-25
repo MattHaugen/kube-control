@@ -6,7 +6,7 @@ import { KubeContext } from '../data-structures/kube-context';
 
 @Injectable()
 export class KubectlService {
-   currentContext: string = '';
+   currentContext = '';
 
    getVersion(): Promise<string> {
      return exec('kubectl version --short=true --client=true')
@@ -55,20 +55,22 @@ export class KubectlService {
 
    cleanseTerminalOutput(terminalOutput: object[]): object[] {
      return terminalOutput.map(row => {
-       let cleansedObject = {};
+       const cleansedObject = {};
        for (const key in row) {
-         cleansedObject[key] = row[key][0]
+          if (row.hasOwnProperty(key)) {
+             cleansedObject[key] = row[key][0];
+          }
        }
        return cleansedObject;
      });
    }
 
    getResource(contextName: string, resourceLabel: string): Promise<Array<object>> {
-      var classScope = this;
-      return this.setCurrentContext(contextName).then(result => {
+      const classScope = this;
+      return this.setCurrentContext(contextName).then(setResult => {
          return exec('kubectl get ' + resourceLabel)
          .then(function (result) {
-            var stdout = TableParser.parse(result.stdout);
+            const stdout = TableParser.parse(result.stdout);
             return classScope.cleanseTerminalOutput(stdout);
          })
          .catch(function (err) {
@@ -78,13 +80,13 @@ export class KubectlService {
    }
 
    getContexts(specificContext?: string): Promise<Array<object>> {
-      let baseCommand = 'kubectl config get-contexts';
-      let command = specificContext ? baseCommand.concat(' ' + specificContext) : baseCommand;
+      const baseCommand = 'kubectl config get-contexts';
+      const command = specificContext ? baseCommand.concat(' ' + specificContext) : baseCommand;
       return exec(command)
       .then(function (result) {
-         var data = TableParser.parse(result.stdout);
+         const data = TableParser.parse(result.stdout);
          return data.map(contextDetails => {
-            var parsedData = {};
+            const parsedData = {};
             Object.keys(contextDetails).forEach((key) => {
                parsedData[key.toLowerCase()] = contextDetails[key][0]
             })
@@ -97,7 +99,7 @@ export class KubectlService {
    }
 
    getLogs(resource: string): Promise<string> {
-     let command = `kubectl logs ${resource} --tail=40`;
+     const command = `kubectl logs ${resource} --tail=40`;
      return exec(command)
      .then(function (result) {
         return result.stdout;
@@ -108,7 +110,7 @@ export class KubectlService {
    }
 
    getDescribe(resource: string): Promise<string> {
-     let command = `kubectl describe ${resource}`;
+     const command = `kubectl describe ${resource}`;
      return exec(command)
      .then(function (result) {
         return result.stdout;
