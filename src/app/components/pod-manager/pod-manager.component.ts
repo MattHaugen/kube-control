@@ -5,15 +5,17 @@ import { SuiModalService } from 'ng2-semantic-ui';
 import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-modal.component';
 
 @Component({
-  selector: 'pod-status-table',
-  templateUrl: './pod-status-table.component.html'
+  selector: 'pod-manager',
+  templateUrl: './pod-manager.component.html'
 })
-export class PodStatusTableComponent implements OnInit {
+export class PodManagerComponent implements OnInit {
   @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Ready', 'Status', 'Restarts', 'Age', ''];
   loading: boolean = true;
+  notification: string = null;
+  notificationClass: string = 'negative';
 
   constructor(
     private kubectlService: KubectlService,
@@ -33,8 +35,16 @@ export class PodStatusTableComponent implements OnInit {
 
   refreshData() {
     this.loading = true;
-    this.kubectlService.getResource(this.context, 'pods').then(podDetails => {
+    this.notification = null;
+    this.kubectlService.getResource(this.context, 'pods')
+    .then(podDetails => {
       this.data = podDetails;
+      this.loading = false;
+    })
+    .catch(err => {
+      this.data = [];
+      this.notification = err;
+      this.notificationClass = 'negative';
       this.loading = false;
     });
   }
@@ -51,5 +61,9 @@ export class PodStatusTableComponent implements OnInit {
       this.modalService
       .open(new TerminalOutputModal(logs, podName));
     });
+  }
+
+  closeNotification(): void {
+    this.notification = null;
   }
 }
