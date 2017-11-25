@@ -8,9 +8,9 @@ import { KubectlService } from '../../providers/kubectl.service';
 })
 export class HomeComponent implements OnInit {
 
-   tabs: { context:string }[] = [];
-   activeTab: number = 0;
-   currentContext: string = '';
+   tabs: { context: string }[] = [];
+   activeTab = 0;
+   currentContext = '';
    availableContexts: object[] = [];
 
    constructor(
