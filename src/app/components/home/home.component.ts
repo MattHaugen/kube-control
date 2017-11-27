@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KubectlService } from '../../providers/kubectl.service';
+import { UserSettingsService } from '../../providers/user-settings.service';
 import { ContextConstants } from '../../constants/context-constants';
 
 @Component({
@@ -14,9 +15,11 @@ export class HomeComponent implements OnInit {
    currentContext = '';
    availableContexts: object[] = [];
    refreshOptions: Array<object> = ContextConstants.REFRESH_CADENCE_OPTIONS;
+   selectedRefreshCadence = null;
 
    constructor(
-     private kubectlService: KubectlService
+     private kubectlService: KubectlService,
+     private userSettingsService: UserSettingsService
    ) {}
 
    ngOnInit() {
@@ -26,6 +29,10 @@ export class HomeComponent implements OnInit {
      });
      this.kubectlService.getContexts().then(allContexts => {
        this.availableContexts = allContexts;
+     });
+
+     this.userSettingsService.getUserSetting('refreshCadence').then(refreshCadenceValue => {
+       this.selectedRefreshCadence = refreshCadenceValue;
      });
    }
 
@@ -45,6 +52,10 @@ export class HomeComponent implements OnInit {
    addTab(contextName: string) {
      this.tabs.push({ context: contextName});
      this.activeTab = this.tabs.length - 1;
+   }
+
+   changeRefreshRate(event) {
+     console.log(event)
    }
 
 }

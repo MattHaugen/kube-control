@@ -3,12 +3,14 @@
       <div class="header item logo">
          <a routerLink="/home">KubeControl</a>
       </div>
-      <a class="item right" routerLink="/settings"><i class="setting icon"></i></a>
-      <div class="item right">
-         Refresh every
-         <sui-select class="inline" [(ngModel)]="selectedRefresh" [options]="refreshOptions" labelField="label" #select>
-           <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option"></sui-select-option>
-        </sui-select>
+      <div class="right menu">
+        <div class="item right">
+           <span class="refresh-label">Refresh every</span>
+           <sui-select class="inline" [(ngModel)]="selectedRefreshCadence" (ngModelChange)="changeRefreshRate($event)" [options]="refreshOptions" labelField="label" valueField="id" #select>
+             <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option"></sui-select-option>
+          </sui-select>
+        </div>
+        <a class="item right" routerLink="/settings"><i class="setting icon"></i></a>
       </div>
    </div>
 

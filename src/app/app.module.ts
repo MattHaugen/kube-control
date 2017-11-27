@@ -24,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ElectronService } from './providers/electron.service';
 import { KubectlService } from './providers/kubectl.service';
+import { UserSettingsService } from './providers/user-settings.service';
 
 import { SuiModule } from 'ng2-semantic-ui';
 
@@ -50,7 +51,7 @@ import { SuiModule } from 'ng2-semantic-ui';
     AppRoutingModule,
     SuiModule
   ],
-  providers: [ElectronService, KubectlService],
+  providers: [ElectronService, KubectlService, UserSettingsService],
   bootstrap: [AppComponent],
   entryComponents: [
     TerminalOutputModalComponent
