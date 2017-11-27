@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 import { KubectlService } from '../../providers/kubectl.service';
 import { KubeContext } from '../../data-structures/kube-context';
-import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'context-container',

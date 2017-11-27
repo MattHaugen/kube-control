@@ -1,7 +1,7 @@
 export class KubeContext {
-  name: string = '';
-  cluster: string = '';
-  namespace: string = '';
+  name = '';
+  cluster = '';
+  namespace = '';
   pods: Array<object> = [];
   services: Array<object> = [];
 }
