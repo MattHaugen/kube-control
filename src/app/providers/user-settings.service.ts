@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ContextConstants } from '../constants/context-constants';
 
 @Injectable()
 export class UserSettingsService {
@@ -7,11 +6,11 @@ export class UserSettingsService {
     refreshCadence: 10000
   }
 
-  getUserSetting(key) {
+  getUserSetting(key: string): Promise<object> {
     return Promise.resolve(this.userSettings[key]);
   }
 
-  setUserSetting(key, value) {
+  setUserSetting(key: string, value: any): Promise<object> {
     this.userSettings[key] = value;
     return this.getUserSetting(key);
   }
