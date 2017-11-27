@@ -4,6 +4,12 @@
          <a routerLink="/home">KubeControl</a>
       </div>
       <a class="item right" routerLink="/settings"><i class="setting icon"></i></a>
+      <div class="item right">
+         Refresh every
+         <sui-select class="inline" [(ngModel)]="selectedRefresh" [options]="refreshOptions" labelField="label" #select>
+           <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option"></sui-select-option>
+        </sui-select>
+      </div>
    </div>
 
    <div class="ui top attached tabular menu">

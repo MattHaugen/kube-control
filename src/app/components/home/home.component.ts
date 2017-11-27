@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KubectlService } from '../../providers/kubectl.service';
+import { ContextConstants } from '../../constants/context-constants';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ export class HomeComponent implements OnInit {
    activeTab = 0;
    currentContext = '';
    availableContexts: object[] = [];
+   refreshOptions: Array<object> = ContextConstants.REFRESH_CADENCE_OPTIONS;
 
    constructor(
      private kubectlService: KubectlService
