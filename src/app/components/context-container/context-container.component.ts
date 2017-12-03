@@ -10,30 +10,49 @@ import { KubeContext } from '../../data-structures/kube-context';
 })
 export class ContextContainerComponent implements OnChanges {
   @Input() context: string;
-  lastUpdated: Date = new Date();
+  @Input() refreshCadence: string;
+  refreshTimerReference;
+  lastUpdated: Date = null;
   kubeContext: KubeContext = new KubeContext();
   refresherSubject: Subject<any> = new Subject();
 
   constructor(
-    private kubectlService: KubectlService,
+    private kubectlService: KubectlService
   ) {}
 
   ngOnChanges(changes: any) {
-     this.kubeContext.name = this.context;
-     this.kubectlService.getContexts(this.context).then((contextDetails: { namespace: string, cluster: string }[]) => {
-        const specificContextDetails = contextDetails[0];
-        this.kubeContext.namespace = specificContextDetails.namespace;
-        this.kubeContext.cluster = specificContextDetails.cluster;
-     });
+    this.kubeContext.name = this.context;
+    this.kubectlService.getContexts(this.context).then((contextDetails: { namespace: string, cluster: string }[]) => {
+      const specificContextDetails = contextDetails[0];
+      this.kubeContext.namespace = specificContextDetails.namespace;
+      this.kubeContext.cluster = specificContextDetails.cluster;
+    });
 
-     if (!changes.context.firstChange) {
-        this.refreshData();
-     }
+    // Refresh data any time the context changes from initial set
+    if (changes.context && !changes.context.firstChange) {
+      this.refreshData();
+    }
+
+    this.resetRefreshTimer();
   }
 
   refreshData() {
     this.lastUpdated = new Date();
     this.refresherSubject.next(this.lastUpdated);
+
+    this.resetRefreshTimer();
+  }
+
+  resetRefreshTimer() {
+    const classReference = this;
+    clearTimeout(this.refreshTimerReference);
+
+    const parsedNumber = Number.parseInt(this.refreshCadence);
+    if (parsedNumber) {
+      this.refreshTimerReference = setTimeout(function() {
+        classReference.refreshData();
+      }, this.refreshCadence);
+    }
   }
 
 }

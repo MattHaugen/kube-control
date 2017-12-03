@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
      this.activeTab = this.tabs.length - 1;
    }
 
-   changeRefreshRate(event) {
-     console.log(event)
+   changeRefreshRate(value) {
+     this.userSettingsService.setUserSetting('refreshCadence', value);
    }
 
 }
