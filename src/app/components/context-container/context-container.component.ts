@@ -40,9 +40,18 @@ export class ContextContainerComponent implements OnChanges {
     if (changes.isActive) {
       if (changes.isActive.previousValue === false && changes.isActive.currentValue === true) {
         this.kubectlService.setCurrentContext(this.context).then(setResult => {
-          this.resetRefreshTimer();
+          const currentTime = new Date().getTime();
+          const parsedRefreshCadence = Number.parseInt(this.refreshCadence);
+
+          if (parsedRefreshCadence && currentTime - this.lastUpdated.getTime() > parsedRefreshCadence) {
+            // If this tab hasn't been activated since the refresh cadence, update it immediately
+            this.refreshData();
+          } else {
+            this.resetRefreshTimer();
+          }
         });
       } else if (changes.isActive.previousValue === true && changes.isActive.currentValue === false) {
+        // If this container is no longer active, stop its auto refresh
         clearTimeout(this.refreshTimerReference);
       }
     }
@@ -60,8 +69,8 @@ export class ContextContainerComponent implements OnChanges {
     const classReference = this;
     clearTimeout(this.refreshTimerReference);
 
-    const parsedNumber = Number.parseInt(this.refreshCadence);
-    if (parsedNumber) {
+    const parsedRefreshCadence = Number.parseInt(this.refreshCadence);
+    if (parsedRefreshCadence) {
       this.refreshTimerReference = setTimeout(function() {
         classReference.refreshData();
       }, this.refreshCadence);
