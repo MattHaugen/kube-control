@@ -8,7 +8,7 @@ import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-mo
   selector: 'deployment-manager',
   templateUrl: './deployment-manager.component.html'
 })
-export class DeploymentManagerComponent implements OnInit {
+export class DeploymentManagerComponent implements OnInit, OnDestroy {
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Desired', 'Current', 'Up-To-Date', 'Available', 'Age', ''];

@@ -8,7 +8,7 @@ import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-mo
   selector: 'replicaset-manager',
   templateUrl: './replicaset-manager.component.html'
 })
-export class ReplicasetManagerComponent implements OnInit {
+export class ReplicasetManagerComponent implements OnInit, OnDestroy {
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Desired', 'Current', 'Ready', 'Age', ''];
