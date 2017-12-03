@@ -20,12 +20,12 @@
   </div>
 
   <div class="sixteen wide tablet eight wide computer column">
-    <pod-manager [context]="context" [refreshListener]="refresherSubject"></pod-manager>
-    <deployment-manager [context]="context" [refreshListener]="refresherSubject"></deployment-manager>
-    <replicaset-manager [context]="context" [refreshListener]="refresherSubject"></replicaset-manager>
+    <pod-manager [refreshListener]="refresherSubject"></pod-manager>
+    <deployment-manager [refreshListener]="refresherSubject"></deployment-manager>
+    <replicaset-manager [refreshListener]="refresherSubject"></replicaset-manager>
   </div>
   <div class="sixteen wide tablet eight wide computer column">
-    <service-manager [context]="context" [refreshListener]="refresherSubject"></service-manager>
-    <ingress-manager [context]="context" [refreshListener]="refresherSubject"></ingress-manager>
+    <service-manager [refreshListener]="refresherSubject"></service-manager>
+    <ingress-manager [refreshListener]="refresherSubject"></ingress-manager>
   </div>
 </div>

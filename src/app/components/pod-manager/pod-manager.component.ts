@@ -9,7 +9,6 @@ import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-mo
   templateUrl: './pod-manager.component.html'
 })
 export class PodManagerComponent implements OnInit {
-  @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Ready', 'Status', 'Restarts', 'Age', ''];

@@ -9,7 +9,6 @@ import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-mo
   templateUrl: './deployment-manager.component.html'
 })
 export class DeploymentManagerComponent implements OnInit {
-  @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Desired', 'Current', 'Up-To-Date', 'Available', 'Age', ''];

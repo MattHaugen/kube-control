@@ -9,7 +9,6 @@ import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-mo
   templateUrl: './ingress-manager.component.html'
 })
 export class IngressManagerComponent implements OnInit {
-  @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Hosts', 'Address', 'Ports', 'Age', ''];

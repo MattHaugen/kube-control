@@ -9,7 +9,6 @@ import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-mo
   templateUrl: './replicaset-manager.component.html'
 })
 export class ReplicasetManagerComponent implements OnInit {
-  @Input() context: string;
   @Input() refreshListener:Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Desired', 'Current', 'Ready', 'Age', ''];
