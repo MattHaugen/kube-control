@@ -11,6 +11,7 @@ import { KubeContext } from '../../data-structures/kube-context';
 export class ContextContainerComponent implements OnChanges {
   @Input() context: string;
   @Input() refreshCadence: string;
+  @Input() isActive = false;
   refreshTimerReference;
   lastUpdated: Date = null;
   kubeContext: KubeContext = new KubeContext();
@@ -21,7 +22,6 @@ export class ContextContainerComponent implements OnChanges {
   ) {}
 
   ngOnChanges(changes: any) {
-
     // Refresh data any time the context changes
     if (changes.context) {
       this.kubeContext.name = this.context;
@@ -33,10 +33,20 @@ export class ContextContainerComponent implements OnChanges {
 
       this.kubectlService.setCurrentContext(this.context).then(setResult => {
         this.refreshData();
+        this.resetRefreshTimer();
       });
     }
 
-    this.resetRefreshTimer();
+    if (changes.isActive) {
+      if (changes.isActive.previousValue === false && changes.isActive.currentValue === true) {
+        this.kubectlService.setCurrentContext(this.context).then(setResult => {
+          this.resetRefreshTimer();
+        });
+      } else if (changes.isActive.previousValue === true && changes.isActive.currentValue === false) {
+        clearTimeout(this.refreshTimerReference);
+      }
+    }
+
   }
 
   refreshData() {
