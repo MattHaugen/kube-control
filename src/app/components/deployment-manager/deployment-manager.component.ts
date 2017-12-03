@@ -23,7 +23,6 @@ export class DeploymentManagerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.refreshData();
     this.refreshListener.subscribe(event => {
       this.refreshData();
     });

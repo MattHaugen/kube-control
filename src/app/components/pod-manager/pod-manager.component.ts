@@ -23,7 +23,6 @@ export class PodManagerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.refreshData();
     this.refreshListener.subscribe(event => {
       this.refreshData();
     });
