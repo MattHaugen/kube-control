@@ -36,7 +36,7 @@ export class DeploymentManagerComponent implements OnInit {
   refreshData() {
     this.loading = true;
     this.notification = null;
-    this.kubectlService.getResource(this.context, 'deployments')
+    this.kubectlService.getResource('deployments')
     .then(resourceDetails => {
       this.data = resourceDetails;
       this.loading = false;

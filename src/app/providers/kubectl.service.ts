@@ -65,18 +65,16 @@ export class KubectlService {
      });
    }
 
-   getResource(contextName: string, resourceLabel: string): Promise<Array<object>> {
-      const classScope = this;
-      return this.setCurrentContext(contextName).then(setResult => {
-         return exec('kubectl get ' + resourceLabel)
-         .then(function (result) {
-            const stdout = TableParser.parse(result.stdout);
-            return classScope.cleanseTerminalOutput(stdout);
-         })
-         .catch(function (err) {
-            return Promise.reject(err);
-         });
-      });
+   getResource(resourceLabel: string): Promise<Array<object>> {
+     const classScope = this;
+     return exec('kubectl get ' + resourceLabel)
+     .then(function (result) {
+        const stdout = TableParser.parse(result.stdout);
+        return classScope.cleanseTerminalOutput(stdout);
+     })
+     .catch(function (err) {
+        return Promise.reject(err);
+     });
    }
 
    getContexts(specificContext?: string): Promise<Array<object>> {

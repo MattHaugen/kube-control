@@ -21,16 +21,19 @@ export class ContextContainerComponent implements OnChanges {
   ) {}
 
   ngOnChanges(changes: any) {
-    this.kubeContext.name = this.context;
-    this.kubectlService.getContexts(this.context).then((contextDetails: { namespace: string, cluster: string }[]) => {
-      const specificContextDetails = contextDetails[0];
-      this.kubeContext.namespace = specificContextDetails.namespace;
-      this.kubeContext.cluster = specificContextDetails.cluster;
-    });
 
-    // Refresh data any time the context changes from initial set
-    if (changes.context && !changes.context.firstChange) {
-      this.refreshData();
+    // Refresh data any time the context changes
+    if (changes.context) {
+      this.kubeContext.name = this.context;
+      this.kubectlService.getContexts(this.context).then((contextDetails: { namespace: string, cluster: string }[]) => {
+        const specificContextDetails = contextDetails[0];
+        this.kubeContext.namespace = specificContextDetails.namespace;
+        this.kubeContext.cluster = specificContextDetails.cluster;
+      });
+
+      this.kubectlService.setCurrentContext(this.context).then(setResult => {
+        this.refreshData();
+      });
     }
 
     this.resetRefreshTimer();

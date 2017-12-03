@@ -36,7 +36,7 @@ export class ReplicasetManagerComponent implements OnInit {
   refreshData() {
     this.loading = true;
     this.notification = null;
-    this.kubectlService.getResource(this.context, 'replicasets')
+    this.kubectlService.getResource('replicasets')
     .then(resourceDetails => {
       this.data = resourceDetails;
       this.loading = false;
