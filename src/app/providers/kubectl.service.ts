@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { exec } from 'child-process-promise';
-import * as terminalTableParser from 'terminal-table-parser';
+import * as childProcess from 'child_process';
+import * as promisify from 'util.promisify';
 import * as TableParser from 'table-parser';
 import { KubeContext } from '../data-structures/kube-context';
+
+const exec = promisify(childProcess.exec);
 
 @Injectable()
 export class KubectlService {
@@ -11,7 +13,7 @@ export class KubectlService {
    getVersion(): Promise<string> {
      return exec('kubectl version --short=true --client=true')
      .then(function (result) {
-        return result.stdout.trim();
+        return result.trim();
      })
      .catch(function (err) {
         console.error('ERROR: ', err);
@@ -21,7 +23,7 @@ export class KubectlService {
    getRawConfig(): Promise<string> {
      return exec('kubectl config view')
      .then(function (result) {
-        return result.stdout.trim();
+        return result.trim();
      })
      .catch(function (err) {
         console.error('ERROR: ', err);
@@ -31,7 +33,7 @@ export class KubectlService {
    getCurrentContext(): Promise<string> {
       return exec('kubectl config current-context')
       .then(function (result) {
-         return result.stdout.trim();
+         return result.trim();
       })
       .catch(function (err) {
          console.error('ERROR: ', err);
@@ -46,7 +48,7 @@ export class KubectlService {
       this.currentContext = contextName;
       return exec('kubectl config use-context ' + contextName)
       .then(function (result) {
-         return result.stdout.trim();
+         return result.trim();
       })
       .catch(function (err) {
          console.error('ERROR: ', err);
@@ -69,7 +71,7 @@ export class KubectlService {
      const classScope = this;
      return exec('kubectl get ' + resourceLabel)
      .then(function (result) {
-        const stdout = TableParser.parse(result.stdout);
+        const stdout = TableParser.parse(result);
         return classScope.cleanseTerminalOutput(stdout);
      })
      .catch(function (err) {
@@ -82,7 +84,7 @@ export class KubectlService {
       const command = specificContext ? baseCommand.concat(' ' + specificContext) : baseCommand;
       return exec(command)
       .then(function (result) {
-         const data = TableParser.parse(result.stdout);
+         const data = TableParser.parse(result);
          return data.map(contextDetails => {
             const parsedData = {};
             Object.keys(contextDetails).forEach((key) => {
@@ -100,7 +102,7 @@ export class KubectlService {
      const command = `kubectl logs ${resource} --tail=40`;
      return exec(command)
      .then(function (result) {
-        return result.stdout;
+        return result;
      })
      .catch(function (err) {
         console.error('ERROR: ', err);
@@ -111,7 +113,7 @@ export class KubectlService {
      const command = `kubectl describe ${resource}`;
      return exec(command)
      .then(function (result) {
-        return result.stdout;
+        return result;
      })
      .catch(function (err) {
         console.error('ERROR: ', err);

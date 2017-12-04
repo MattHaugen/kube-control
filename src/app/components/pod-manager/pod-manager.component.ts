@@ -9,12 +9,12 @@ import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-mo
   templateUrl: './pod-manager.component.html'
 })
 export class PodManagerComponent implements OnInit, OnDestroy {
-  @Input() refreshListener:Subject<any>;
+  @Input() refreshListener: Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Ready', 'Status', 'Restarts', 'Age', ''];
-  loading: boolean = true;
+  loading = true;
   notification: string = null;
-  notificationClass: string = 'negative';
+  notificationClass = 'negative';
 
   constructor(
     private kubectlService: KubectlService,
@@ -50,7 +50,7 @@ export class PodManagerComponent implements OnInit, OnDestroy {
   showLogs(podName: string): void {
     this.kubectlService.getLogs('po/' + podName).then(logs => {
       this.modalService
-      .open(new TerminalOutputModal(logs, podName, "Displaying last 40 lines"));
+      .open(new TerminalOutputModal(logs, podName, 'Displaying last 40 lines'));
     });
   }
 
