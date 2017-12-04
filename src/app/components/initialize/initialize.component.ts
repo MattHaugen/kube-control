@@ -19,7 +19,7 @@ export class InitializeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let checkPromises = [
+    const checkPromises = [
       this.verifyKubectl()
     ];
 
