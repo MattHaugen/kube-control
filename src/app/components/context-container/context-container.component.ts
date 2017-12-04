@@ -10,7 +10,7 @@ import { KubeContext } from '../../data-structures/kube-context';
 })
 export class ContextContainerComponent implements OnChanges {
   @Input() context: string;
-  @Input() refreshCadence: string;
+  @Input() refreshCadence: number;
   @Input() isActive = false;
   refreshTimerReference;
   lastUpdated: Date = null;
@@ -22,6 +22,7 @@ export class ContextContainerComponent implements OnChanges {
   ) {}
 
   ngOnChanges(changes: any) {
+
     // Refresh data any time the context changes
     if (changes.context) {
       this.kubeContext.name = this.context;
@@ -41,9 +42,8 @@ export class ContextContainerComponent implements OnChanges {
       if (changes.isActive.previousValue === false && changes.isActive.currentValue === true) {
         this.kubectlService.setCurrentContext(this.context).then(setResult => {
           const currentTime = new Date().getTime();
-          const parsedRefreshCadence = Number.parseInt(this.refreshCadence);
 
-          if (parsedRefreshCadence && currentTime - this.lastUpdated.getTime() > parsedRefreshCadence) {
+          if (currentTime - this.lastUpdated.getTime() > this.refreshCadence) {
             // If this tab hasn't been activated since the refresh cadence, update it immediately
             this.refreshData();
           } else {
@@ -54,6 +54,14 @@ export class ContextContainerComponent implements OnChanges {
         // If this container is no longer active, stop its auto refresh
         clearTimeout(this.refreshTimerReference);
       }
+    }
+
+    if (
+      changes.refreshCadence &&
+      !changes.refreshCadence.firstChange &&
+      changes.refreshCadence.currentValue !== changes.refreshCadence.previousValue
+    ) {
+      this.resetRefreshTimer();
     }
 
   }
@@ -69,8 +77,7 @@ export class ContextContainerComponent implements OnChanges {
     const classReference = this;
     clearTimeout(this.refreshTimerReference);
 
-    const parsedRefreshCadence = Number.parseInt(this.refreshCadence);
-    if (parsedRefreshCadence) {
+    if (this.refreshCadence) {
       this.refreshTimerReference = setTimeout(function() {
         classReference.refreshData();
       }, this.refreshCadence);

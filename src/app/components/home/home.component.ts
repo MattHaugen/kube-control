@@ -55,7 +55,13 @@ export class HomeComponent implements OnInit {
    }
 
    changeRefreshRate(value) {
-     this.userSettingsService.setUserSetting('refreshCadence', value);
+     // UI elements turn the values into strings, make sure we save as Numbers or null
+     let parsedValue = Number.parseInt(value);
+     if (!parsedValue) {
+       parsedValue = null;
+     }
+
+     this.userSettingsService.setUserSetting('refreshCadence', parsedValue);
    }
 
 }
