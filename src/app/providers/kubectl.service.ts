@@ -16,7 +16,7 @@ export class KubectlService {
         return result.trim();
      })
      .catch(function (err) {
-        console.error('ERROR: ', err);
+        return Promise.reject(err);
      });
    }
 

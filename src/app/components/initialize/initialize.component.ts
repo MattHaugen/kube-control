@@ -28,6 +28,9 @@ export class InitializeComponent implements OnInit {
         this.router.navigate(['/home']);
       }
     })
+    .catch(error => {
+      this.errors.push(error);
+    })
   }
 
   verifyKubectl(): Promise<boolean> {
