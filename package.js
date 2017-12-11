@@ -32,7 +32,7 @@ function pack(plat, arch, cb) {
     // there is no darwin ia32 electron
     if (plat === 'darwin' && arch === 'ia32') return;
 
-    let icon = 'kube-control';
+    let icon = 'icon/kube-control';
 
     if (icon) {
         DEFAULT_OPTS.icon = icon + (() => {
