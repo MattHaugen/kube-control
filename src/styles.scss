@@ -6,19 +6,25 @@ html, body {
   height: 100%;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
 
 .ui.secondary.menu .item {
   font-size: 1.2rem;
 
   &.logo {
-    font-family: 'Poiret One', cursive;
-
-    background-color: teal;
-    color: white;
+    font-family: 'Shrikhand', cursive;
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    padding: 0px;
+    margin-left: 5px;
 
     a {
-      color: white;
+      color: teal;
+
+      &:hover {
+         color: #005757;
+      }
     }
   }
 }
