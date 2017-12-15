@@ -43,7 +43,7 @@ export class ContextContainerComponent implements OnChanges {
         this.kubectlService.setCurrentContext(this.context).then(setResult => {
           const currentTime = new Date().getTime();
 
-          if (currentTime - this.lastUpdated.getTime() > this.refreshCadence) {
+          if (this.refreshCadence && (currentTime - this.lastUpdated.getTime()) > this.refreshCadence) {
             // If this tab hasn't been activated since the refresh cadence, update it immediately
             this.refreshData();
           } else {
