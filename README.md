@@ -4,6 +4,7 @@ Never look up a `kubectl` command again. KubeControl puts a user friendly GUI ov
 
 ## Current Features
 - View status of resources
+- View `Logs` and `Describe` of resources
 - View your `kubectl` config
 
 ## Future Features
