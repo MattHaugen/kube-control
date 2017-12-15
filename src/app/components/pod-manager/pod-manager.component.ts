@@ -50,7 +50,7 @@ export class PodManagerComponent implements OnInit, OnDestroy {
   showLogs(podName: string): void {
     this.kubectlService.getLogs('po/' + podName).then(logs => {
       this.modalService
-      .open(new TerminalOutputModal(logs, podName, 'Displaying last 40 lines'));
+      .open(new TerminalOutputModal(logs, podName, 'Displaying last 100 lines'));
     });
   }
 

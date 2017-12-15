@@ -5,6 +5,7 @@ import * as TableParser from 'table-parser';
 import { KubeContext } from '../data-structures/kube-context';
 
 const exec = promisify(childProcess.exec);
+const spawn = childProcess.spawn;
 
 @Injectable()
 export class KubectlService {
@@ -99,13 +100,15 @@ export class KubectlService {
    }
 
    getLogs(resource: string): Promise<string> {
-     const command = `kubectl logs ${resource} --tail=40`;
-     return exec(command)
-     .then(function (result) {
-        return result;
-     })
-     .catch(function (err) {
-        console.error('ERROR: ', err);
+     return new Promise((resolve) => {
+       const spawnProcess = spawn('kubectl', ['logs', `${resource}`, '--tail=100']);
+       let result = '';
+       spawnProcess.stdout.on('data', (data) => {
+         result += data.toString();
+       });
+       spawnProcess.on('close', function(code) {
+         resolve(result);
+       });
      });
    }
 
