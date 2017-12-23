@@ -16,13 +16,16 @@
 
    <div class="ui top attached tabular menu">
      <div class="item" [ngClass]="{'active': activeTab===i}" *ngFor="let tab of tabs; let i = index" (click)="setCurrentContext(tab.context, i)">
-       {{ tab.context }}
-       <div class="ui dropdown" suiDropdown>
-         <i class="dropdown icon"></i>
-         <div class="menu" suiDropdownMenu>
-           <div class="item" *ngFor="let availableContext of availableContexts" (click)="setTabContext(availableContext.name, i)">{{ availableContext.name }}</div>
-         </div>
-       </div>
+       <sui-select
+          [(ngModel)]="tab.context"
+          [options]="availableContexts"
+          labelField="name"
+          valueField="name"
+          [isSearchable]="true"
+          [isDisabled]="activeTab!==i"
+          #select>
+          <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option"></sui-select-option>
+        </sui-select>
      </div>
      <div class="item" [ngClass]="{'active': activeTab===null}" (click)="addContext()">
         +
