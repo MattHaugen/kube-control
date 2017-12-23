@@ -15,7 +15,7 @@
    </div>
 
    <div class="ui top attached tabular menu">
-     <div class="item" [ngClass]="{'active': activeTab===i}" *ngFor="let tab of tabs; let i = index" (click)="setCurrentContext(tab.context, i)">
+     <a class="item" [ngClass]="{'active': activeTab===i}" *ngFor="let tab of tabs; let i = index" (click)="setCurrentContext(tab.context, i)">
        <sui-select
           [(ngModel)]="tab.context"
           [options]="availableContexts"
@@ -26,10 +26,10 @@
           #select>
           <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option"></sui-select-option>
         </sui-select>
-     </div>
-     <div class="item" [ngClass]="{'active': activeTab===null}" (click)="addContext()">
+     </a>
+     <a class="item" [ngClass]="{'active': activeTab===null}" (click)="addContext()">
         +
-     </div>
+     </a>
    </div>
    <div class="ui bottom attached segment">
      <context-container context="{{tab.context}}" refreshCadence="{{selectedRefreshCadence}}" [isActive]="activeTab===i" *ngFor="let tab of tabs; let i = index" [hidden]="activeTab!==i"></context-container>
