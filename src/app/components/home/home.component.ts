@@ -54,6 +54,11 @@ export class HomeComponent implements OnInit {
      this.activeTab = this.tabs.length - 1;
    }
 
+   removeTab(tabIndex: number) {
+     this.tabs.splice(tabIndex, 1);
+     this.activeTab -= 1;
+   }
+
    changeRefreshRate(value) {
      // UI elements turn the values into strings, make sure we save as Numbers or null
      let parsedValue = Number.parseInt(value);

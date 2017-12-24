@@ -4,4 +4,20 @@
    .refresh-label {
      margin-right: .5rem;
    }
+
+   .ui.menu:not(.vertical) .item>.button.remove-tab {
+     font-size: .78571429rem;
+     margin-left: .5rem;
+     background: none;
+     opacity: .45;
+     color: rgba(0,0,0,.95);
+
+     &.active {
+       opacity: 1;
+     }
+
+     &:hover {
+       background: #e0e1e2 none;
+     }
+   }
 }
