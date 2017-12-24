@@ -33,6 +33,6 @@
    </div>
    <div class="ui bottom attached segment">
      <context-container context="{{tab.context}}" refreshCadence="{{selectedRefreshCadence}}" [isActive]="activeTab===i" *ngFor="let tab of tabs; let i = index" [hidden]="activeTab!==i"></context-container>
-     <context-table-selector *ngIf="activeTab===null" (onSelection)="addTab($event)"></context-table-selector>
+     <context-table-selector *ngIf="activeTab===null" (onSelection)="addTab($event)" [alreadySelected]="tabs"></context-table-selector>
    </div>
 </div>
