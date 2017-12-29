@@ -1,0 +1,7 @@
+<div class="ui positive message" *ngIf="showNotification">
+  <i class="close icon"></i>
+  <div class="header">
+    New Version Available
+  </div>
+  <p>A new version of KubeControl is available ({{ channelData.current_version }}). <a href="{{ channelData.download_link }}">Get it now.</a></p>
+</div>

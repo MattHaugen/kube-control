@@ -4,7 +4,7 @@ import 'polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { InitializeComponent } from './components/initialize/initialize.component';
@@ -18,7 +18,8 @@ import { DeploymentManagerComponent } from './components/deployment-manager/depl
 import { ReplicasetManagerComponent } from './components/replicaset-manager/replicaset-manager.component';
 import { IngressManagerComponent } from './components/ingress-manager/ingress-manager.component';
 import { ContextTableSelectorComponent } from './components/context-table-selector/context-table-selector.component';
-import { TerminalOutputModalComponent } from "./components/terminal-output-modal/terminal-output-modal.component";
+import { TerminalOutputModalComponent } from './components/terminal-output-modal/terminal-output-modal.component';
+import { UpgradeNotifierComponent } from './components/upgrade-notifier/upgrade-notifier.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -41,13 +42,14 @@ import { SuiModule } from 'ng2-semantic-ui';
     ReplicasetManagerComponent,
     IngressManagerComponent,
     ContextTableSelectorComponent,
-    TerminalOutputModalComponent
+    TerminalOutputModalComponent,
+    UpgradeNotifierComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     SuiModule
   ],

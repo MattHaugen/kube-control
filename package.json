@@ -46,6 +46,7 @@
     "@angular/platform-browser-dynamic": "4.4.4",
     "@angular/router": "4.4.4",
     "child-process-promise": "2.2.1",
+    "compare-versions": "^3.1.0",
     "core-js": "2.4.1",
     "enhanced-resolve": "3.3.0",
     "fix-path": "^2.1.0",

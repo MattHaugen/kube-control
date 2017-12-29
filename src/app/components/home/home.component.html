@@ -14,6 +14,8 @@
       </div>
    </div>
 
+   <app-upgrade-notifier></app-upgrade-notifier>
+
    <div class="ui top attached tabular menu">
      <a class="item" [ngClass]="{'active': activeTab===i}" *ngFor="let tab of tabs; let i = index" (click)="setCurrentContext(tab.context, i)">
        <sui-select
