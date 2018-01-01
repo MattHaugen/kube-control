@@ -9,7 +9,7 @@ import { TerminalOutputModal } from '../terminal-output-modal/terminal-output-mo
   templateUrl: './service-manager.component.html'
 })
 export class ServiceManagerComponent implements OnInit, OnDestroy {
-  @Input() refreshListener:Subject<any>;
+  @Input() refreshListener: Subject<any>;
   data: Array<object> = [];
   headerLabels = ['Name', 'Cluster-IP', 'External-IP', 'Port(s)', 'Age', ''];
   loading: boolean = true;
