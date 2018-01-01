@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as CompareVersions from 'compare-versions';
 import { AppConstants } from '../../constants/app-constants';
+import { shell } from 'electron';
 
 interface HomeBaseResponse {
   channel: {
@@ -14,7 +15,8 @@ interface HomeBaseResponse {
 
 @Component({
   selector: 'app-upgrade-notifier',
-  templateUrl: './upgrade-notifier.component.html'
+  templateUrl: './upgrade-notifier.component.html',
+  styleUrls: ['./upgrade-notifier.component.scss']
 })
 export class UpgradeNotifierComponent implements OnInit {
 
@@ -36,5 +38,13 @@ export class UpgradeNotifierComponent implements OnInit {
         this.showNotification = true;
       }
     });
+  }
+
+  launchDownloadLink() {
+    shell.openExternal(this.channelData.download_link);
+  }
+
+  hideNotification() {
+    this.showNotification = false;
   }
 }
