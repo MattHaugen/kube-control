@@ -8,7 +8,10 @@ Never look up a `kubectl` command again. KubeControl puts a user friendly GUI ov
 - View your `kubectl` config
 
 ## Future Features
+- View more resource types (Secrets, ConfigMaps, etc)
 - Delete resources
+- Apply changes to resources
+- Manage kubectl config within KubeControl
 
 ## Built On
 - Angular Electron (https://github.com/maximegris/angular-electron.git)
