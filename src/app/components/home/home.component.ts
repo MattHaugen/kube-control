@@ -41,10 +41,6 @@ export class HomeComponent implements OnInit {
      this.activeTab = tabIndex;
    }
 
-   setTabContext(contextName: string, tabIndex: number) {
-     this.tabs[tabIndex].context = contextName;
-   }
-
    addContext() {
       this.activeTab = null;
    }

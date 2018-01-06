@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { KubectlService } from '../../providers/kubectl.service';
 import { KubeContext } from '../../data-structures/kube-context';
@@ -8,7 +8,7 @@ import { KubeContext } from '../../data-structures/kube-context';
   templateUrl: './context-container.component.html',
   styleUrls: ['./context-container.component.scss']
 })
-export class ContextContainerComponent implements OnChanges {
+export class ContextContainerComponent implements OnChanges, OnDestroy {
   @Input() context: string;
   @Input() refreshCadence: number;
   @Input() isActive = false;
@@ -20,6 +20,10 @@ export class ContextContainerComponent implements OnChanges {
   constructor(
     private kubectlService: KubectlService
   ) {}
+
+  ngOnDestroy() {
+    clearTimeout(this.refreshTimerReference);
+  }
 
   ngOnChanges(changes: any) {
 
