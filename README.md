@@ -1,6 +1,8 @@
-# KubeControl
+# ![KubeControl Screenshot](./KubeControlLogo.png) KubeControl
 
 Never look up a `kubectl` command again. KubeControl puts a user friendly GUI over your existing `kubectl` config.
+
+![KubeControl Screenshot](./screenshot.png)
 
 ## Current Features
 - View status of resources
