@@ -2,6 +2,8 @@
 
 Never look up a `kubectl` command again. KubeControl puts a user friendly GUI over your existing `kubectl` config.
 
+[Download For Mac](http://www.matthaugen.com/kube_control/KubeControl_Mac.zip)
+
 ![KubeControl Screenshot](./screenshot.png)
 
 ## Current Features
