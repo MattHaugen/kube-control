@@ -1,4 +1,4 @@
-# ![KubeControl Screenshot](./KubeControlLogo.png) KubeControl
+# KubeControl
 
 Never look up a `kubectl` command again. KubeControl puts a user friendly GUI over your existing `kubectl` config.
 
