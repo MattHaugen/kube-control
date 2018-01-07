@@ -7,7 +7,7 @@ Never look up a `kubectl` command again. KubeControl puts a user friendly GUI ov
 ![KubeControl Screenshot](./screenshot.png)
 
 ## Current Features
-- View status of resources
+- View status of most commonly used resources
 - View `Logs` and `Describe` of resources
 - View your `kubectl` config
 
