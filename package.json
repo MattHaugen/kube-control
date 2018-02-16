@@ -1,6 +1,6 @@
 {
   "name": "kube-control",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Kubernetes GUI wrapped as a desktop app",
   "homepage": "https://github.com/MattHaugen/kube-control",
   "author": {
@@ -68,9 +68,9 @@
     "cross-env": "5.0.5",
     "css-loader": "0.28.7",
     "cssnano": "3.10.0",
-    "electron": "1.7.6",
+    "electron": "1.8.2",
     "electron-packager": "9.1.0",
-    "electron-reload": "1.2.1",
+    "electron-reload": "1.2.2",
     "exports-loader": "0.6.4",
     "file-loader": "0.11.2",
     "html-loader": "0.5.1",
@@ -88,7 +88,7 @@
     "less-loader": "4.0.5",
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",
-    "npm-run-all": "^4.1.1",
+    "npm-run-all": "4.1.1",
     "postcss-loader": "2.0.6",
     "postcss-url": "7.1.2",
     "protractor": "5.1.2",
