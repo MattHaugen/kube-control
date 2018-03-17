@@ -27,9 +27,13 @@ export class UpgradeNotifierComponent implements OnInit {
     download_link: string;
   };
 
+  shell: typeof shell;
+
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+     this.shell = window.require('electron').shell;
+ }
 
   ngOnInit() {
     this.http.get<HomeBaseResponse>('http://www.matthaugen.com/kube_control/home_base.json').subscribe(data => {
@@ -41,7 +45,7 @@ export class UpgradeNotifierComponent implements OnInit {
   }
 
   launchDownloadLink() {
-    shell.openExternal(this.channelData.download_link);
+    this.shell.openExternal(this.channelData.download_link);
   }
 
   hideNotification() {

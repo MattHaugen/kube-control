@@ -4,12 +4,28 @@ import * as promisify from 'util.promisify';
 import * as TableParser from 'table-parser';
 import { KubeContext } from '../data-structures/kube-context';
 
-const exec = promisify(childProcess.exec);
-const spawn = childProcess.spawn;
+let exec;
+let spawn;
 
 @Injectable()
 export class KubectlService {
+
+   childProcess: typeof childProcess;
+
    currentContext = '';
+
+   constructor() {
+     // Conditional imports
+     if (this.isElectron()) {
+       this.childProcess = window.require('child_process');
+       exec = promisify(this.childProcess.exec);
+       spawn = this.childProcess.spawn;
+     }
+   }
+
+   isElectron = () => {
+     return window && window.process && window.process.type;
+   }
 
    getVersion(): Promise<string> {
      return exec('kubectl version --short=true --client=true')
@@ -89,8 +105,8 @@ export class KubectlService {
          return data.map(contextDetails => {
             const parsedData = {};
             Object.keys(contextDetails).forEach((key) => {
-               parsedData[key.toLowerCase()] = contextDetails[key][0]
-            })
+               parsedData[key.toLowerCase()] = contextDetails[key][0];
+            });
             return parsedData;
          });
       })
