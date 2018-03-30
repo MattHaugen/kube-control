@@ -201,6 +201,8 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-react": "^0.79.0",
     "source-map-support": "^0.5.3",
     "util.promisify": "1.0.0"
   },

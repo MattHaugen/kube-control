@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as childProcess from 'child_process';
-import * as promisify from 'util.promisify';
+import promisify from 'util.promisify';
 import styles from './Home.css';
 
 type Props = {};
@@ -11,7 +11,7 @@ export default class Home extends Component<Props> {
   props: Props;
 
   render() {
-    const exec = promisify.default(childProcess.exec);
+    const exec = promisify(childProcess.exec);
     const { spawn } = childProcess;
 
     exec('kubectl config current-context')

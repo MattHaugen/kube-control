@@ -56,7 +56,7 @@ app.on('window-all-closed', () => {
 
 
 app.on('ready', async () => {
-  autoUpdater.checkForUpdates();
+  //autoUpdater.checkForUpdates();
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }

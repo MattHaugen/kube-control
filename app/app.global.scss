@@ -1,0 +1,47 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+@import "~font-awesome/css/font-awesome.css";
+@import "~semantic-ui-css/semantic.min.css";
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+}
+
+.ui.secondary.menu .item {
+  font-size: 1.2rem;
+
+  &.logo {
+    font-family: 'Shrikhand', cursive;
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    padding: 0px;
+    margin-left: 5px;
+
+    a {
+      color: teal;
+
+      &:hover {
+         color: #005757;
+      }
+    }
+  }
+}
+
+$header-color: #087197;
+
+.ui.card>.content {
+  &.kb-header {
+    background-color: $header-color;
+  }
+
+  .header {
+    color: #FFF;
+  }
+}
