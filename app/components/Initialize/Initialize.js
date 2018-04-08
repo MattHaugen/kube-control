@@ -3,24 +3,29 @@ import React, { Component } from 'react';
 import { Progress } from 'semantic-ui-react';
 import styles from './Initialize.scss';
 
-type Props = {};
+type Props = {
+   readinessPercent: number,
+   errors: Array
+};
 
 export default class Initialize extends Component<Props> {
-  props: Props;
+   props: Props;
 
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={`ui two column centered aligned ${styles.grid}`}>
-          <div className="column">
-            <Progress percent={44} progress color="teal" />
+   render() {
+      const renderedErrors = this.props.errors.map(error => <p key={error}>{ error }</p>);
 
-            <div className={styles.errorList}>
-              ERRORS
+      return (
+         <div className={styles.container}>
+            <div className={`ui two column centered aligned ${styles.grid}`}>
+               <div className="column">
+                  <Progress percent={this.props.readinessPercent} progress color="teal" />
+
+                  <div className={styles.errorList}>
+                     {renderedErrors}
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+         </div>
+      );
+   }
 }
