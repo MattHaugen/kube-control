@@ -30,7 +30,11 @@
     }],
     "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
-    "react/prefer-stateless-function": "off"
+    "react/prefer-stateless-function": "off",
+    "indent": "off",
+    "react/jsx-indent": "off",
+    "no-tabs": "off",
+    "max-len": "off"
   },
   "plugins": [
     "flowtype",

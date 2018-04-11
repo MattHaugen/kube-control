@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import shortid from 'shortid';
 import { Progress } from 'semantic-ui-react';
 import styles from './Initialize.scss';
 
@@ -12,7 +13,7 @@ export default class Initialize extends Component<Props> {
    props: Props;
 
    render() {
-      const renderedErrors = this.props.errors.map(error => <p key={error}>{ error }</p>);
+      const renderedErrors = this.props.errors.map(error => <p key={shortid.generate()}>{ error }</p>);
 
       return (
          <div className={styles.container}>

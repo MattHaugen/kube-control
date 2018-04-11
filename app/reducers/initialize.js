@@ -15,7 +15,7 @@ const initialize = (state = initialState, action) => {
       }
       case INITIALIZE_ERROR_ADD: {
          const newState = Object.assign({}, state);
-         newState.errors.push(action.error);
+         newState.errors = [...newState.errors, ...[action.error]];
          return newState;
       }
       default:
