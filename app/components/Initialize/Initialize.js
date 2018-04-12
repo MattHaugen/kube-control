@@ -6,7 +6,7 @@ import styles from './Initialize.scss';
 
 type Props = {
    readinessPercent: number,
-   errors: Array
+   errors: Array<string>
 };
 
 export default class Initialize extends Component<Props> {

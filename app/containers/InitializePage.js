@@ -6,7 +6,17 @@ import KubectlService from '../services/kubectl.service';
 import Initialize from '../components/Initialize/Initialize';
 import { addToReadinessPercent, addError } from '../actions/initialize';
 
-class InitializePageContainer extends Component {
+type Props = {
+  addError: (error: string) => void,
+  initalizeComplete: () => void,
+  addToReadinessPercent: (percent: number) => void,
+  readinessPercent: number,
+  errors: Array<string>
+};
+
+class InitializePageContainer extends Component<Props> {
+   props: Props;
+
    componentDidMount() {
       this.runChecks();
    }
