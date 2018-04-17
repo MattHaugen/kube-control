@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body style="overflow: hidden; background-color: rgba(0,0,0,0); margin: 0" >
+  <div id="App"></div>
+</body>
+
+<script>window.exports = module.exports</script>
+<script type="text/tsx">
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import {AppContainer} from 'react-hot-loader';
+
+import createHistory from 'history/createBrowserHistory';
+import { Route, Switch } from 'react-router';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+
+import rootReducer from './reducers';
+
+import InitializePage  from './containers/InitializePage';
+
+let render = () => {
+  const { App } = require('./app');
+
+  const history = createHistory();
+  const historyMiddleware = routerMiddleware(history);
+  const middleware = [ thunk, historyMiddleware ];
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middleware)));
+  ReactDOM.render(
+     <AppContainer>
+     <Provider store={store}>
+     <ConnectedRouter history={history}>
+     <div>
+     <Switch>
+     <Route path="/" component={InitializePage}/>
+     <Route path="/app" component={App}/>
+     </Switch>
+     </div>
+     </ConnectedRouter>
+     </Provider>
+     </AppContainer>,
+     document.getElementById('App')
+  );
+}
+
+render();
+if (module.hot) { module.hot.accept(render); }
+</script>
+</html>
