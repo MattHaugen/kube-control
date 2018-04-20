@@ -17,6 +17,9 @@
           "transform-async-to-generator"
         ],
         "sourceMaps": "inline"
+      },
+      "text/typescript": {
+        "jsx": "react"
       }
     },
     "production": {
@@ -36,6 +39,9 @@
           "transform-async-to-generator"
         ],
         "sourceMaps": "none"
+      },
+      "text/typescript": {
+        "jsx": "react"
       }
     }
   }

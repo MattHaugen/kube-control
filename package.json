@@ -48,7 +48,10 @@
   },
   "dependencies": {
     "electron-compile": "^6.4.2",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "util.promisify": "^1.0.0"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
