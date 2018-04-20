@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-   <meta charset="utf-8">
-   <title></title>
-</head>
-<body>
-   <div id="root"></div>
-</body>
-<script src="app.js"></script>
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <div id="root"></div>
+   </body>
+   <script>
+      import * as React from 'react';
+      import * as ReactDOM from 'react-dom';
+      import { Home } from './home';
+
+      ReactDOM.render(<Home/>, document.getElementById('root'));
+   </script>
 </html>
