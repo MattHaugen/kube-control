@@ -1,4 +1,7 @@
-import { INITIALIZE_READINESS_ADD, INITIALIZE_ERROR_ADD } from '../actions/initialize';
+import {
+   INITIALIZE_READINESS_ADD,
+   INITIALIZE_ERROR_ADD
+} from "../actions/initialize";
 
 const initialState = {
    readinessPercent: 0,
@@ -18,7 +21,7 @@ const initialize = (state = initialState, action) => {
          return newState;
       }
       default:
-      return state;
+         return state;
    }
 };
 
