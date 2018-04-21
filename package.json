@@ -51,6 +51,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-hot-loader": "^4.0.0",
     "util.promisify": "^1.0.0"
   },
   "devDependencies": {

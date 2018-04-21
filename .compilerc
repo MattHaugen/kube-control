@@ -1,48 +1,52 @@
 {
-  "env": {
-    "development": {
-      "application/javascript": {
-        "presets": [
-          [
-            "env",
-            {
-              "targets": {
-                "electron": "1.8"
-              }
-            }
-          ],
-          "react"
-        ],
-        "plugins": [
-          "transform-async-to-generator"
-        ],
-        "sourceMaps": "inline"
+   "env": {
+      "development": {
+         "application/javascript": {
+            "presets": [
+               [
+                  "env",
+                  {
+                     "targets": {
+                        "electron": "1.8"
+                     }
+                  }
+               ],
+               "react"
+            ],
+            "plugins": [
+               "transform-async-to-generator"
+            ],
+            "sourceMaps": "inline"
+         },
+         "text/typescript": {
+            "module": "commonjs",
+            "target": "ES2016",
+            "jsx": "react"
+         }
       },
-      "text/typescript": {
-        "jsx": "react"
+      "production": {
+         "application/javascript": {
+            "presets": [
+               [
+                  "env",
+                  {
+                     "targets": {
+                        "electron": "1.8"
+                     }
+                  }
+               ],
+               "react"
+            ],
+            "plugins": [
+               "transform-async-to-generator"
+            ],
+            "sourceMaps": "none"
+         },
+         "text/typescript": {
+            "module": "commonjs",
+            "target": "ES2016",
+            "jsx": "react"
+         }
       }
-    },
-    "production": {
-      "application/javascript": {
-        "presets": [
-          [
-            "env",
-            {
-              "targets": {
-                "electron": "1.8"
-              }
-            }
-          ],
-          "react"
-        ],
-        "plugins": [
-          "transform-async-to-generator"
-        ],
-        "sourceMaps": "none"
-      },
-      "text/typescript": {
-        "jsx": "react"
-      }
-    }
-  }
+   }
 }

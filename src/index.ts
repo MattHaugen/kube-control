@@ -1,4 +1,7 @@
 import { app, BrowserWindow } from 'electron';
+import { enableLiveReload } from 'electron-compile';
+
+enableLiveReload({strategy: 'react-hmr'});
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require

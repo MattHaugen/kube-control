@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <title></title>
-   </head>
-   <body>
-      <div id="root"></div>
-   </body>
-   <script>
-      import * as React from 'react';
-      import * as ReactDOM from 'react-dom';
-      import { Home } from './home';
+<head>
+   <meta charset="utf-8">
+   <title>KubeControl</title>
+</head>
+<body>
+   <div id="root"></div>
+</body>
+<script>
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 
-      ReactDOM.render(<Home/>, document.getElementById('root'));
-   </script>
+const render = () => {
+   const Home = require('./home').Home;
+   ReactDOM.render(<AppContainer><Home/></AppContainer>, document.getElementById('root'));
+}
+
+render();
+if (module.hot) { module.hot.accept(render); }
+</script>
 </html>
