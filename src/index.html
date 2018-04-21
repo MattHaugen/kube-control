@@ -11,10 +11,22 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
 const render = () => {
    const Home = require('./home').Home;
-   ReactDOM.render(<AppContainer><Home/></AppContainer>, document.getElementById('root'));
+
+   const middleware = [ thunk ];
+   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+   const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middleware)));
+   
+   ReactDOM.render(
+      <AppContainer><Provider store={store}><Home/></Provider></AppContainer>,
+      document.getElementById('root')
+   );
 }
 
 render();

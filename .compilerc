@@ -20,7 +20,7 @@
          },
          "text/typescript": {
             "module": "commonjs",
-            "target": "ES2016",
+            "target": "es2016",
             "jsx": "react"
          }
       },
@@ -44,7 +44,7 @@
          },
          "text/typescript": {
             "module": "commonjs",
-            "target": "ES2016",
+            "target": "es2016",
             "jsx": "react"
          }
       }
