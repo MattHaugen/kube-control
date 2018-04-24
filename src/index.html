@@ -10,16 +10,30 @@
 <script>
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
+//Hot (Re)Loader
 import { AppContainer } from "react-hot-loader";
+
+// Redux
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+
+// Router
+import createHistory from "history/createBrowserHistory";
+import { Route } from "react-router";
+import { ConnectedRouter, routerMiddleware } from "react-router-redux";
+
+//Reducers
 import rootReducer from "./reducers";
 
 const render = () => {
    const Home = require("./home").Home;
 
-   const middleware = [thunk];
+   const history = createHistory();
+   const historyMiddleware = routerMiddleware(history);
+
+   const middleware = [thunk, historyMiddleware];
    const composeEnhancers =
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
    const store = createStore(
@@ -30,7 +44,11 @@ const render = () => {
    ReactDOM.render(
       <AppContainer>
          <Provider store={store}>
-            <Home />
+            <ConnectedRouter history={history}>
+               <div>
+                  <Route path="/" component={Home} />
+               </div>
+            </ConnectedRouter>
          </Provider>
       </AppContainer>,
       document.getElementById("root")
