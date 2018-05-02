@@ -1,5 +1,11 @@
 # KubeControl
 
+---
+
+**NOT CURRENTLY MAINTAINED** - If I have more free time in the future I'll be picking this up again. :)
+
+---
+
 Never look up a `kubectl` command again. KubeControl puts a user friendly GUI over your existing `kubectl` config.
 
 [Download For Mac](http://www.matthaugen.com/kube_control/KubeControl_Mac.zip)
