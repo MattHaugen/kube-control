@@ -3,6 +3,7 @@
 <head>
    <meta charset="utf-8">
    <title>KubeControl</title>
+   <!-- Electron Compile doesn't support importing CSS/SCSS in the TSX files -->
    <link rel="stylesheet" type="text/css" href="global.scss">
 </head>
 <body>
@@ -29,6 +30,7 @@ import { ConnectedRouter, routerMiddleware } from "react-router-redux";
 import rootReducer from "./reducers";
 
 const render = () => {
+   const InitializePage = require("./containers/InitializePage").InitializePage;
    const Home = require("./home").Home;
 
    const history = createHistory();
